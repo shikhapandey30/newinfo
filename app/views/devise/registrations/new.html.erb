@@ -1,0 +1,78 @@
+<div class="clear"></div>
+<section id="main" class="login entire_width">
+  <div class="container_12">
+    <div id="content">
+      <div class="grid_12">
+        <h1 class="page_title">Login or Create an Account</h1>
+      </div>
+      <!-- .grid_12 -->
+      <div class="grid_6 new_customers">
+        <h2>New Customers</h2>
+        <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+        <div class="clear"></div>
+        <a href="/users/sign_in"><button class="account">If you have an account</button></a>
+      </div>
+      <!-- .grid_6 -->
+      <div class="grid_6">
+        <!-- <form class="registed"> -->
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "registed"}) do |f| %>
+          <h2>Registed Customers</h2>
+          <p>If you don't have an account with us, please Create Account.</p>
+          <div class="email">
+            <strong>Email Adress:</strong><sup class="surely">*</sup><br/>
+            <!-- <input type="email" name="" class="" value="" /> -->
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <!-- .email -->
+          <div class="password">
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+            <strong>Password:</strong><sup class="surely">*</sup><br/>
+            <!-- <input type="text" name="" class="" value="" /> -->
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+          
+          <div class="password">
+            <strong>Password:</strong><sup class="surely">*</sup><br/>
+            <!-- <input type="text" name="" class="" value="" /> -->
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <a class="forgot" href="#">Forgot Your Password?</a>
+          </div>
+          <!-- .password -->
+          <div class="remember">
+            <input class="niceCheck" type="checkbox" name="Remember_password" />
+            <span class="rem">Remember password</span>
+          </div>
+          <!-- .remember -->
+          <div class="submit">                    
+            <input type="submit" value="Sign up" />
+            <sup class="surely">*</sup><span>Required Field</span>
+          </div>
+          <!-- .submit -->
+        <% end %>  
+        <!-- </form> -->
+        <!-- .registed -->
+      </div>
+      <!-- .grid_6 -->
+    </div>
+    <!-- #content -->
+    <div class="clear"></div>
+  </div>
+  <!-- .container_12 -->
+</section>
+<!-- #main -->
+<div class="clear"></div>
+<style type="text/css">
+  form.registed input[type="password"] {
+    width: 255px;
+    margin: 5px 0 13px 0;
+}
+
+input[type="email"], input[type="password"] {
+    height: 33px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+</style>
