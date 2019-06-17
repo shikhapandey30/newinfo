@@ -18,6 +18,9 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "registed"}) do |f| %>
           <h2>Registed Customers</h2>
           <p>If you don't have an account with us, please Create Account.</p>
+          <div class="flash alert-warning" >
+            <%= devise_error_messages! %>
+          </div>
           <div class="email">
             <strong>Email Adress:</strong><sup class="surely">*</sup><br/>
             <!-- <input type="email" name="" class="" value="" /> -->

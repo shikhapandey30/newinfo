@@ -17,8 +17,12 @@
       <div class="grid_6">
         <!-- <form class="registed"> -->
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "registed"}) do |f| %>
+
           <h2>Registed Customers</h2>
           <p>If you have an account with us, please log in.</p>
+          <% flash.each do |key, value| %>
+            <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
           <div class="email">
             <strong>Email Adress:</strong><sup class="surely">*</sup><br/>
             <!-- <input type="email" name="" class="" value="" /> -->
@@ -29,7 +33,7 @@
             <strong>Password:</strong><sup class="surely">*</sup><br/>
             <!-- <input type="text" name="" class="" value="" /> -->
             <%= f.password_field :password, autocomplete: "current-password"%>
-            <a class="forgot" href="#">Forgot Your Password?</a>
+            <a class="forgot" href="/users/password/new">Forgot Your Password?</a>
           </div>
           <!-- .password -->
           <div class="remember">
