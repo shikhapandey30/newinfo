@@ -91,23 +91,21 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_mailer.default_url_options = { host: 'https://market-theme.herokuapp.com' }
-  # config.action_mailer.delivery_method = :letter_opener
-
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_options = {from: 'localhost:3000'}
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'market-theme.herokuapp.com' }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    # domain:               'localhost',
-    user_name:            'testing.bittern@gmail.com',
-    password:             'bittern12345',
-    authentication:       'plain',
-    enable_starttls_auto: true 
-     }
+  address: "smtp.sendgrid.net",
+  port: 587,
+  # domain: "localhost:3000",
+  authentication: "plain",
+  enable_starttls_auto: true,
+  user_name: 'testing.bittern@gmail.com',
+  password: 'bittern12345'
+
+  }
 
   config.action_mailer.raise_delivery_errors = true
 end
