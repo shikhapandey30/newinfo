@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require js/jquery-1.7.2.min
+//= require social-share-button
 //= require js/html5
 //= require js/main
 //= require js/jquery.carouFredSel-6.2.0-packed

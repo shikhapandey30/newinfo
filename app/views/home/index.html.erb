@@ -71,11 +71,19 @@
     </div>
     <!-- #top_button -->
     <div class="clear"></div>
+    <%= render_shareable :url=> 'http://github.com/hermango/', :facebook=> {:send=> 'true', :url=> 'http://demo.dev'} %>
     <div class="carousel">
       <div class="c_header">
         <div class="grid_10">
           <h2>Best Sellers</h2>
+            <%#= social_share_button_tag(@product.name, url: request.url, image: @product.image, desc: Nokogiri::HTML(@product.desc).text) %>
+            <%#= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
+            <%#= social_share_button_tag("My Site") %>
+            <%#= render_shareable %>
+
+
         </div>
+
         <!-- .grid_10 -->
         <div class="grid_2">
           <a id="next_c1" class="next arows" href="#"><span>Next</span></a>

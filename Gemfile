@@ -51,6 +51,7 @@ group :development do
 end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'thin'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -63,3 +64,15 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+gem 'social-share-button'
+# gem 'social-share-button', '0.2.1'
+
+# gem 'social-share-button', '~> 0.0.1'
+# gem 'social-share-button', '~> 0.0.8'
+# gem 'social-share-button', '~> 0.1.6'
+gem 'shareable'
+
