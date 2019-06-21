@@ -17,9 +17,7 @@ class Authentication < ActiveRecord::Base
     end
 
     if auth[:provider] == "instagram"
-        email =  auth[:info][:nickname] + '@' + 'gmail.com'
-        
-        
+        email =  auth[:info][:nickname] + '@' + 'gmail.com'    
     end
     
     authenticate = where(provider: auth[:provider], :uid=>auth[:uid]).first_or_initialize

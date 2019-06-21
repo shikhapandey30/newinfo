@@ -1,3 +1,8 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container_12">
   <div id="top">
     <div class="grid_3 ">
@@ -95,10 +100,10 @@
           <li class="separator">|</li>
           <li><a href="#">My Wishlist</a></li>
           <li class="separator">|</li>
-          <li class="separator">| <%= link_to "fb", "/auth/facebook"%></li>
-          <li class="separator">| <%= link_to "L", "/auth/linkedin"%></li>
-          <li class="separator">| <%= link_to "G", "/auth/google_oauth2"%></li>
-          <li class="separator">| <%= link_to "T", "/auth/twitter"%></li>
+          <!-- <li class="separator">| <%#= link_to "fb", "/auth/facebook"%></li>
+          <li class="separator">| <%#= link_to "L", "/auth/linkedin"%></li>
+          <li class="separator">| <%#= link_to "G", "/auth/google_oauth2"%></li>
+          <li class="separator">| <%#= link_to "T", "/auth/twitter"%></li> -->
           <%#= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
          
           
@@ -120,13 +125,16 @@
   <!-- #branding -->
 </div>
 <!-- .container_12 -->
+<div class="col-md-12">
+          
+</div>
 <div class="clear"></div>
 <div id="block_nav_primary">
   <div class="container_12">
-    <div class="grid_12">
+    <div class="grid_12 grid_color">
       <nav class="primary">
         <a class="menu-select" href="#">Catalog</a>
-        <ul>
+        <ul class="ib">
           <li class="curent"><a href="/">Home</a></li>
           <li><a href="/home/catalog_grid">Solids</a></li>
           <li><a href="/home/catalog_grid">Liquids</a></li>
@@ -159,6 +167,17 @@
               <li><a href="/blog_post.html">Blog post view</a></li>
             </ul>
           </li>
+          <%if current_user.present?  %>
+            <li><a href="/users/sign_out">Sign Out</a></li>
+          <% else %>
+            <ul class="social-network social-circle pull-right">
+              <!-- <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li> -->
+              <li><a href="/auth/facebook" class="icoFacebook ib" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="/auth/twitter" class="icoTwitter ib" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="/auth/google_oauth2" class="icoGoogle ib" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="/auth/linkedin" class="icoLinkedin ib" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            </ul> 
+          <% end %>
         </ul>
       </nav>
       <!-- .primary -->
@@ -168,3 +187,99 @@
   <!-- .container_12 -->
 </div>
 <!-- .block_nav_primary -->
+<style type="text/css">
+  
+
+/*=========================
+  Icons
+ ================= */
+
+/* footer social icons */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left:0 !important;
+  padding: 0;
+       /*background: none; */
+}
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+
+/* footer social icons */
+.social-network a.icoRss:hover {
+  background-color: #F56505;
+}
+.social-network a.icoFacebook:hover {
+  background-color:#3B5998;
+}
+.social-network a.icoTwitter:hover {
+  background-color:#33ccff;
+}
+.social-network a.icoGoogle:hover {
+  background-color:#BD3518;
+}
+.social-network a.icoVimeo:hover {
+  background-color:#0590B8;
+}
+.social-network a.icoLinkedin:hover {
+  background-color:#007bb7;
+}
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+  color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+  color:#44BCDD;
+}
+
+.social-circle li a {
+  display:inline-block;
+  position:relative;
+  margin:0 auto 0 auto;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  border-radius:50%;
+  text-align:center;
+  width: 50px;
+  height: 50px;
+  font-size:20px;
+}
+.social-circle li i {
+  margin:0;
+  line-height:50px;
+  text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.social-circle i {
+  color: black;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+a {
+ /*background-color: #D3D3D3;*/
+    
+}
+.grid_color
+{
+  background: #d4dce5 !important;
+}
+/*.ib{background-color: cadetblue !important;}*/
+</style>
