@@ -72,6 +72,60 @@
     <!-- #top_button -->
     <div class="clear"></div>
     <%= render_shareable :url=> 'http://github.com/hermango/', :facebook=> {:send=> 'true', :url=> 'http://demo.dev'} %>
+
+    <!-- <All Product> -->
+      <div class="carousel">
+        <div class="c_header">
+          <div class="grid_10">
+            <h2>Latest Product</h2>
+          </div>
+          <div class="grid_2">
+            <a id="next_c1" class="next arows" href="#"><span>Next</span></a>
+            <a id="prev_c1" class="prev arows" href="#"><span>Prev</span></a>
+          </div>
+        </div>
+        <div class="list_carousel">
+          <ul id="list_product" class="list_product">
+            <li class="">
+              <% @products.each do |product| %>
+                <div class="grid_3 product">
+                  <div>
+                    <img src="<%= asset_path('sale.png') %>" alt="Sale" class="sale">
+                  </div>
+                  <div class="prev">
+                    <a href="/products/<%= product.id %>"><img src="<%= product.image %>" alt="" title=""/></a>
+                  </div>
+                  <% if product.description.present? %>
+                    <h3 class="title"><%= product.description.truncate(50) %></h3>
+                  <% end %>  
+                  <%#= product.name %>
+                  <div class="cart"> 
+                    <div class="price">
+                      <div class="vert">
+                        <div class="price_new">₹<%= product.display_price %></div>
+                        <div class="price_old">
+                          <% if product.full_price.to_f > 0 %>
+                            <del> ₹<%= product.display_full_price %></del>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <%# if product.discount_percentage %>
+                      <span class="discount"><%#= product.discount_percentage.to_i %>%  off</span>
+                    <%# end %> -->
+                    <a href="#" class="obn"></a>
+                    <a href="#" class="like"></a>
+                    <a href="#" class="bay"></a>
+                    
+                  </div>
+                </div>
+                 
+              <% end %>  
+            </li>
+          </ul>
+        </div>
+      </div>
+    <!-- <All Product>   -->
     <div class="carousel">
       <div class="c_header">
         <div class="grid_10">

@@ -76,4 +76,8 @@ gem 'social-share-button'
 # gem 'social-share-button', '~> 0.0.8'
 # gem 'social-share-button', '~> 0.1.6'
 gem 'shareable'
-
+gem 'activeadmin'
+gem 'carrierwave'
+gem "mini_magick"
+# gem 'will_paginate', '~> 3.1.7'
+gem 'will_paginate-bootstrap'

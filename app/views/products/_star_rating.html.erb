@@ -1,0 +1,37 @@
+<span class="rating-stars ">
+	<div class="grey-stars">
+  
+	</div> 
+	<div class="filled-stars" style="width:80%">
+  
+	</div>
+</span>
+
+
+<style type="text/css">
+.rating-stars {
+    position: relative;
+    vertical-align: baseline;
+    display: inline-block;
+    color: #e9e9e9;
+    overflow: hidden;
+    height: 14px;
+    float: left;
+    line-height: 10px;
+}
+.filled-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    color: #FFC315;
+}
+
+filled-stars:before, .grey-stars:before {
+    content: "\2605\2605\2605\2605\2605";
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 18px;
+}
+</style>

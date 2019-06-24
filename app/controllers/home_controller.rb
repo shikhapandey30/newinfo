@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
 
+	def index
+		@products = Product.last(4)
+  end
+
 	def catalog_grid
 	end
 	

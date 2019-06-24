@@ -1,0 +1,61 @@
+
+<!-- <center>
+  <ul class="pagination pg-blue justify-content-end page pagination_bg_color pre_next_format">
+  <%#= will_paginate @products, renderer: BootstrapPagination::Rails, class: "justify-content-center" %>
+  </ul>
+</center>
+ -->
+
+
+ <div class="grid-container">
+  <div><% @products.each do |product| %>
+      <div class="grid_3 product">
+        <div>
+          <img src="<%= asset_path('sale.png') %>" alt="Sale" class="sale">
+        </div>
+        <div class="prev">
+          <a href="/products/<%= product.id %>"><img src="<%= product.image %>" alt="" title=""/></a>
+        </div>
+        <% if product.description.present? %>
+          <h3 class="title"><%= product.description.truncate(50) %></h3>
+        <% end %>  
+        <%#= product.name %>
+        <div class="cart"> 
+          <div class="price">
+            <div class="vert">
+              <div class="price_new">₹<%= product.display_price %></div>
+              <div class="price_old">
+                <% if product.full_price.to_f > 0 %>
+                  <del> ₹<%= product.display_full_price %></del>
+                <% end %>
+                
+              </div>
+            </div>
+          </div>
+          <!-- <%# if product.discount_percentage %>
+            <span class="discount"><%#= product.discount_percentage.to_i %>%  off</span>
+          <%# end %> -->
+          <a href="#" class="obn"></a>
+          <a href="#" class="like"></a>
+          <a href="#" class="bay"></a>
+        </div>
+      </div>
+    <% end %> 
+  </div>  
+</div>
+<style type="text/css">
+.grid-container {
+  display: grid;
+  height: auto;
+  align-content: center;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
