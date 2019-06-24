@@ -12,7 +12,7 @@
 				<div class="preview slides_container">
 					<div class="prev_bg">
 						<a class="jqzoom" rel="gal1" href="<%= @product.image %>">
-						<% if product.image.present? %>
+						<% if @product.image.present? %>
               <img src="<%= @product.image %>" style="width: 100%" title="" alt=""/>
             <% else %>
               <img src="<%= asset_path('11.jpg') %>" alt="" title=""/>
