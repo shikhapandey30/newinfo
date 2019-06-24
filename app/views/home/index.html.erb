@@ -90,7 +90,7 @@
               <% @products.each do |product| %>
                 <div class="grid_3 product">
                   <div>
-                   <!--  <img src="<%#= asset_path('sale.png') %>" alt="Sale" class="sale"> -->
+                    <img src="<%= asset_path('sale.png') %>" alt="Sale" class="sale">
                   </div>
                   <div class="prev">
                     <a href="/products/<%= product.id %>"><img src="<%= product.image %>" alt="" title=""/></a>
