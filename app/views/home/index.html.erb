@@ -90,10 +90,15 @@
               <% @products.each do |product| %>
                 <div class="grid_3 product">
                   <div>
-                    <img src="<%= asset_path('sale.png') %>" alt="Sale" class="sale">
+                    <!-- <img src="<%#= asset_path('sale.png') %>" alt="Sale" class="sale"> -->
                   </div>
                   <div class="prev">
-                    <a href="/products/<%= product.id %>"><img src="<%= product.image %>" alt="" title=""/></a>
+                    <a href="/products/<%= product.id %>"><% if product.image.present? %>
+                      <img src="<%= product.image %>" style="width: 100%" title="" alt=""/>
+                      <% else %>
+                        <img src="<%= asset_path('11.jpg') %>" alt="" title=""/>
+                      <% end %>
+                    </a>
                   </div>
                   <% if product.description.present? %>
                     <h3 class="title"><%= product.description.truncate(50) %></h3>
