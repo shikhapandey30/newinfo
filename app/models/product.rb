@@ -10,6 +10,9 @@ class Product < ApplicationRecord
 	delegate :category, to: :sub_category, allow_nil: true
 	delegate :sub_category, to: :sub_category_type, allow_nil: true
 
+  STATUS = {:active => "Active", :inactive => "In active"} 
+
+
 	def display_price
     result = ""
     if self.price.to_f > 0
@@ -42,6 +45,12 @@ class Product < ApplicationRecord
       large: image.url("large".to_sym)
     }
   end
+
+  def status_display
+    Product::STATUS[status]
+  end
+
+  # STATUS = {active => "Active", inactive => "In active"}
 
  
 end

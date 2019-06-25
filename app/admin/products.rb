@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-permit_params :id, :name, :description, :sub_category_type_id, :price, :full_price, :image
+permit_params :id, :name, :description, :sub_category_type_id, :price, :full_price, :image, :status
 
 index do
   id_column
@@ -13,6 +13,7 @@ index do
   column "image" do |img|
     image_tag (img.image.url) ,width: 50, height: 50
   end
+  column :status
   actions
 end
 
@@ -24,6 +25,7 @@ form do |f|
     f.input :price
     f.input :full_price
     f.input :image
+    f.input :status, as: :select, collection: Product::STATUS.invert, include_blank: false
   end
   f.actions
 end

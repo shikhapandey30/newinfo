@@ -4,7 +4,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    # @products = Product.all
+    if params[:sub_category_type_id].present?
+      @products = Product.where(sub_category_type_id: params[:sub_category_type_id]).order("RANDOM()").uniq
+      @tranding = Product.where(sub_category_type_id: params[:sub_category_type_id]).order("RANDOM()").limit(4).uniq
+    else
+     
+    end
   end
 
   # GET /products/1
@@ -20,6 +26,7 @@ class ProductsController < ApplicationController
     else
       @rating_review = RatingReview.new
     end
+   
   end
 
   # GET /products/new
@@ -79,6 +86,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :sub_category_type_id, :price, :full_price, :image)
+      params.require(:product).permit(:name, :description, :sub_category_type_id, :price, :full_price, :image, :status)
     end
 end

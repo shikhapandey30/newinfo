@@ -1,67 +1,108 @@
-
-<!-- <center>
-  <ul class="pagination pg-blue justify-content-end page pagination_bg_color pre_next_format">
-  <%#= will_paginate @products, renderer: BootstrapPagination::Rails, class: "justify-content-center" %>
-  </ul>
-</center>
- -->
-
-
- <div class="grid-container">
-  <div><% @products.each do |product| %>
-      <div class="grid_3 product">
-        <div>
-         <!--  <img src="<%#= asset_path('sale.png') %>" alt="Sale" class="sale"> -->
-        </div>
-        <div class="prev">
-          <a href="/products/<%= product.id %>">
-            <% if product.image.present? %>
-              <img src="<%= product.image %>" alt="" title=""/>
-            <% else %>
-              <img src="<%= asset_path('sku.jpg') %>" alt="" title=""/>
+<div class=" block_size wrapper wrapper-content animated fadeInRight">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <% if @products.present? %>
+        <% @products.each do |product| %>
+          <div class="grid_3 product">
+            <div class="prev">
+              <a href="/products/<%= product.id %>">
+                <% if product.image.present? %>
+                  <img src="<%= product.image %>" alt="" title=""/>
+                <% else %>
+                  <img src="<%= asset_path('sku.jpg') %>" alt="" title=""/>
+                <% end %>  
+              </a>
+            </div>
+            <% if product.description.present? %>
+              <h3 class="title"><%= product.description.truncate(50) %></h3>
             <% end %>  
-          </a>
-        </div>
-        <% if product.description.present? %>
-          <h3 class="title"><%= product.description.truncate(50) %></h3>
-        <% end %>  
-        <%#= product.name %>
-        <div class="cart"> 
-          <div class="price">
-            <div class="vert">
-              <div class="price_new">₹<%= product.display_price %></div>
-              <div class="price_old">
-                <% if product.full_price.to_f > 0 %>
-                  <del> ₹<%= product.display_full_price %></del>
-                <% end %>
-                
+          <div class="cart"> 
+            <div class="price">
+              <div class="vert">
+                <div class="price_new">₹<%= product.display_price %></div>
+                  <div class="price_old">
+                    <% if product.full_price.to_f > 0 %>
+                      <del> ₹<%= product.display_full_price %></del>
+                    <% end %>
+                  </div>
+                </div>
               </div>
+              <a href="#" class="obn"></a>
+              <a href="#" class="like"></a>
+              <a href="#" class="bay"></a>
             </div>
           </div>
-          <!-- <%# if product.discount_percentage %>
-            <span class="discount"><%#= product.discount_percentage.to_i %>%  off</span>
-          <%# end %> -->
-          <a href="#" class="obn"></a>
-          <a href="#" class="like"></a>
-          <a href="#" class="bay"></a>
-        </div>
-      </div>
-    <% end %> 
-  </div>  
-</div>
-<style type="text/css">
-.grid-container {
-  display: grid;
-  height: auto;
-  align-content: center;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-}
+        <% end %>
+      <% end %>  
+    </div>   
+  </div>
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h4>TRENDING PRODUCTS</h4>
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <% if @tranding.present? %>
+        <% @tranding.each do |product| %>
+          <div class="grid_3 product">
+            <div class="prev">
+              <a href="/products/<%= product.id %>">
+                <% if product.image.present? %>
+                  <img src="<%= product.image %>" alt="" title=""/>
+                <% else %>
+                  <img src="<%= asset_path('sku.jpg') %>" alt="" title=""/>
+                <% end %>  
+              </a>
+            </div>
+            <% if product.description.present? %>
+              <h3 class="title"><%= product.description.truncate(50) %></h3>
+            <% end %>  
+          <div class="cart"> 
+            <div class="price">
+              <div class="vert">
+                <div class="price_new">₹<%= product.display_price %></div>
+                  <div class="price_old">
+                    <% if product.full_price.to_f > 0 %>
+                      <del> ₹<%= product.display_full_price %></del>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="obn"></a>
+              <a href="#" class="like"></a>
+              <a href="#" class="bay"></a>
+            </div>
+          </div>
+        <% end %>
+      <% end %>  
+    </div>   
+  </div>
+</div>  
+
+<style type="text/css">
+  .img-back
+  {
+    background-image: url("http://www.famousfootwear.com/ProductImages/shoes_ia92320.jpg");
+  }
+  .delete-link
+  {
+    color: #1ab394;
+  }
 </style>
+
+
+<style type="text/css">
+  .ibox-content{
+    padding: 0px !important;
+  }
+ 
+.navbar-static-side{
+  top: 77px;
+}
+.block_size{margin-left: 12% !important;}
+</style>
+
