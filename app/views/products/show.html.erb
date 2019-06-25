@@ -73,7 +73,15 @@
             <div class="block_cart">
               <div class="obn_like">
                 <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
-                <div class="like"><a href="#" class="like">Add to Wishlist</a></div>
+                <div class="like">
+
+                <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+                  Add to Wishlist
+                <% end %>
+                </div>
+
+
+
               </div>
               <div class="cart">
                 <a href="#" class="bay">Add to Cart</a>

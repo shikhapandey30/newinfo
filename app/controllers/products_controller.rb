@@ -78,6 +78,40 @@ class ProductsController < ApplicationController
     end
   end
 
+
+  def add_wishlist
+    @product = Product.find(params[:id])
+    if user_signed_in?
+      existing_wishlist = current_user.wishlists.where(product_id: @product.id)
+      if existing_wishlist.present?
+        flash.now[:error] = "Product is already in your Wishlist!"
+      else
+        current_user.wishlists.create(product_id: @product.id)
+        flash.now[:success] = "Product has been added to your Wishlist!"
+      end
+    else
+      flash[:error] = "You need to sign in or sign up before continuing."
+    end
+  end
+
+  def wishlist
+    product_ids = current_user.wishlists.map(&:product_id)
+    products = Product.where(id: product_ids)
+    category_ids = current_user.wishlists.map{|m| m.product}.map(&:category)
+    category = Category.where(id: category_ids)
+    if params[:sort] == "1"
+      return @products = products.sort_by{ |m| m.price }
+    elsif params[:sort] == "2"
+     return @products = products.sort_by{ |m| m.price }.reverse
+    elsif params[:sort] == "3"
+      return @products = products.sort_by{ |m| m.id }.reverse
+    elsif params[:sort] == "4"
+      return @products = category.sort_by{ |m| m.id}.reverse
+    else
+     return @products = products
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

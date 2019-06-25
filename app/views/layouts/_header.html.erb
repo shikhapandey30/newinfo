@@ -95,17 +95,10 @@
         <ul>
           <li><a href="#">My Account</a></li>
           <li class="separator">|</li>
-          <li><a href="#">My Wishlist</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/wishlist"><i class="fa fa-heart"></i><span class="sr-only">(current)</span><span class="badge"><%= current_user.wishlists.count rescue nil%></a>
+          </li>
           <li class="separator">|</li>
-          <!-- <li class="separator">| <%#= link_to "fb", "/auth/facebook"%></li>
-          <li class="separator">| <%#= link_to "L", "/auth/linkedin"%></li>
-          <li class="separator">| <%#= link_to "G", "/auth/google_oauth2"%></li>
-          <li class="separator">| <%#= link_to "T", "/auth/twitter"%></li> -->
-          <%#= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
-         
-          
-          
-          
           <% if current_user.present? %>
             <li><a href="/users/sign_out">Sign Out</a></li>
           <% else %>  

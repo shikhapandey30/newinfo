@@ -80,9 +80,15 @@
                     </div>
 				          </div>
 				        </div>
-				        <a href="#" class="obn"></a>
-				        <a href="#" class="like"></a>
+
+				        <a><%= link_to products_add_wishlist_path(product), class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+				        	<i class="fa fa-heart" style="font-size:18px;color:red"></i>
+				        </a>	
+                <% end %>
+                <a href="#" class="obn"></a>
 				        <a href="#" class="bay"></a>
+				        
+				        
 				      </div>
 				    </div>
 				  <% end %>
@@ -91,7 +97,7 @@
       </div>
 
       <div class="clear"></div>
-      	<div class="digg_pagination">
+      	<div class="digg_pagination pull-right">
 			    <!-- <div class="page_info">
 			      <%#= page_entries_info @products %>
 			    </div> -->

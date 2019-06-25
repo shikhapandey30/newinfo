@@ -247,29 +247,6 @@
             </div>
             <!-- .grid_3 -->
           </li>
-          <li class="">
-            <div class="grid_3 product">
-              <div class="prev">
-                <a href="/product_page.html">
-                <img src="<%= asset_path('product_8.png') %>" alt="" title=""/></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                    <div class="price_old">$725.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
         </ul>
         <!-- #list_product -->
       </div>
@@ -277,136 +254,59 @@
     </div>
     <!-- .carousel -->
     <div class="carousel">
-      <div class="c_header">
-        <div class="grid_10">
-          <h2>Featured Products</h2>
+      <div class="carousel">
+          <div class="carousel">
+            <div class="c_header">
+              <div class="grid_10">
+                <h2>Featured Products</h2>
+              </div>
+              <div class="grid_2">
+                <a id="next_c1" class="next arows" href="#"><span>Next</span></a>
+                <a id="prev_c1" class="prev arows" href="#"><span>Prev</span></a>
+              </div>
+            </div>
+            <div class="list_carousel">
+              <ul id="list_product" class="list_product">
+                <li class="">
+                  <% @featured_product.each do |product| %>
+                    <div class="grid_3 product">
+                      <div>
+                      </div>
+                      <div class="prev">
+                        <a href="/products/<%= product.id %>"><% if product.image.present? %>
+                          <img src="<%= product.image %>" style="width: 100%" title="" alt=""/>
+                          <% else %>
+                            <img src="<%= asset_path('sku.jpg') %>" alt="" title=""/>
+                          <% end %>
+                        </a>
+                      </div>
+                      <% if product.description.present? %>
+                        <h3 class="title"><%= product.description.truncate(50) %></h3>
+                      <% end %>  
+                      <div class="cart"> 
+                        <div class="price">
+                          <div class="vert">
+                            <div class="price_new">₹<%= product.display_price %></div>
+                            <div class="price_old">
+                              <% if product.full_price.to_f > 0 %>
+                                <del> ₹<%= product.display_full_price %></del>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="#" class="obn"></a>
+                        <a href="#" class="like"></a>
+                        <a href="#" class="bay"></a>
+                        
+                      </div>
+                    </div>
+                     
+                  <% end %>  
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <!-- .grid_10 -->
-        <div class="grid_2">
-          <a id="next_c2" class="next arows" href="#"><span>Next</span></a>
-          <a id="prev_c2" class="prev arows" href="#"><span>Prev</span></a>
-        </div>
-        <!-- .grid_2 -->
-      </div>
-      <!-- .c_header -->
-      <div class="list_carousel">
-        <ul id="list_product2" class="list_product">
-          <li class="">
-            <div class="grid_3 product">
-              <div class="prev">
-                <a href="/product_page.html"><img src="<%= asset_path('product_5.png') %>" alt="" title=""/></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                    <div class="price_old">$725.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
-          <li class="">
-            <div class="grid_3 product">
-              <img src="<%= asset_path('sale.png') %>" alt="Sale" title="" class="sale" />
-              <div class="prev">
-                <a href="/product_page.html"><img src="<%= asset_path('product_6.png') %>" alt="" title=""/>></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                    <div class="price_old">$725.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
-          <li class="">
-            <div class="grid_3 product">
-              <div class="prev">
-                <a href="/product_page.html"><img src="<%= asset_path('product_7.png') %>" alt="" title=""/></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
-          <li class="">
-            <div class="grid_3 product">
-              <img src="<%= asset_path('sale.png') %>" alt="Sale" title="" class="sale" />
-              <div class="prev">
-                <a href="/product_page.html">
-                <img src="<%= asset_path('produkt_slid1.png') %>" alt="" title=""/></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                    <div class="price_old">$725.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
-          <li class="">
-            <div class="grid_3 product">
-              <div class="prev">
-                <a href="/product_page.html"><img src="<%= asset_path('product_9.png') %>" alt="" title=""/></a>
-              </div>
-              <!-- .prev -->
-              <h3 class="title">Febreze Air Effects New Zealand Springs</h3>
-              <div class="cart">
-                <div class="price">
-                  <div class="vert">
-                    <div class="price_new">$550.00</div>
-                    <div class="price_old">$725.00</div>
-                  </div>
-                </div>
-                <a href="#" class="obn"></a>
-                <a href="#" class="like"></a>
-                <a href="#" class="bay"></a>
-              </div>
-              <!-- .cart -->
-            </div>
-            <!-- .grid_3 -->
-          </li>
-        </ul>
-        <!-- #list_product2 -->
-      </div>
-      <!-- .list_carousel -->
     </div>
     <!-- .carousel -->
     <div id="content_bottom">
