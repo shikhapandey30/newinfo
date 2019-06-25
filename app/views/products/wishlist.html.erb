@@ -23,7 +23,11 @@
         <div class="col-sm-6 col-md-6 col-lg-4">
           <div class="card">
             <div class="card-body">
-              <%= link_to image_tag(product.image_url(:thumb), class: "image"), product_path(product) rescue nil %>
+              <% if product.image.present? %>
+                <%= link_to image_tag(product.image_url(:thumb), class: "image"), product_path(product) rescue nil %>
+              <% else %>
+                <img src="<%= asset_path('sku.jpg') %>" alt="" title=""/>
+              <% end %>  
               <hr>
                <div class="blog-post-actions">
                 <h5 class="blog-post-bottom"><%= product.try(:name) %></h5>
