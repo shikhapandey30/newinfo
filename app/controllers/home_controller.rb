@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
 	def catalog_grid
-		@products = Product.all
+		@products = Product.all.paginate(:page => params[:page], :per_page => 6)
 	end
 	
 	def text_page

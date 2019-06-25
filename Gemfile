@@ -80,4 +80,5 @@ gem 'activeadmin'
 gem 'carrierwave'
 gem "mini_magick"
 # gem 'will_paginate', '~> 3.1.7'
-gem 'will_paginate-bootstrap'
+# gem 'will_paginate-bootstrap'
+gem 'will_paginate', '~> 3.1.1'

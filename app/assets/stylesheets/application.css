@@ -13,6 +13,7 @@
  *= require css/style
  *= require css/jquery.jqzoom
  *= require social-share-button
+ *= require pagination
  *= require_self
  *= require rating
  */
