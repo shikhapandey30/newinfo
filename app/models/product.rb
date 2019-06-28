@@ -1,5 +1,6 @@
 class Product < ApplicationRecord	
 	mount_uploader :image, ImageUploader
+  has_many :bookings
 
 	# Association
 	belongs_to :sub_category_type

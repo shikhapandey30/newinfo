@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  resources :bookings
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :products
+  resources :products do
+    member do
+      get 'bookings/new'
+    end
+  end  
   resources :sub_category_types
   resources :sub_categories
   resources :categories
@@ -23,4 +28,6 @@ Rails.application.routes.draw do
   namespace :products do
     post "/wishlist/:id", action: :add_wishlist, as: :add_wishlist
   end  
+  match '/paytm_payment' => 'paytm#start_payment', via: [:post], :as => :paytm_payment
+  match '/confirm_payment' => 'paytm#verify_payment', via: [:post]
 end

@@ -1,0 +1,53 @@
+# aws_key_id: AKIAJZFHZJ2NNOKZUDUA
+# aws_key_secret: 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
+# APP_HOST: "http://localhost:3000"
+# PAYTM_MERCHANT_KEY: 'OA4j_Rv0LULxjXyP'
+# WEBSITE: 'WEBSTAGING'
+# MID: 'lMJjRX27579380024942'
+# INDUSTRY_TYPE_ID: 'Retail'
+# CHANNEL_ID: 'WEB'
+# payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
+# CALLBACK:  'http://localhost:3001/confirm_payment'
+aws_key_id: AKIAJZFHZJ2NNOKZUDUA
+aws_key_secret: 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
+PAYTM_MERCHANT_KEY: 'Tj6GcT!EzP3zQbxt'
+WEBSITE: 'WEBSTAGING'
+MID: 'nklxey40272993747095'
+INDUSTRY_TYPE_ID: 'Retail'
+CHANNEL_ID: 'WEB'
+payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
+CALLBACK_URL: "http://localhost:6001/confirm_payment"
+SMTP_SERVER: 'smtp.gmail.com'
+SMTP_PORT: '587'
+DOMAIN: 'localhost'
+SMTP_USER: 'testing.bittern@gmail.com'
+SMTP_PASS: 'bittern12345'
+HOST_URL: localhost:6001
+
+
+
+# # aws_key_id: AKIAJZFHZJ2NNOKZUDUA
+# # aws_key_secret: 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
+# # APP_HOST: "http://localhost:3000"
+# # PAYTM_MERCHANT_KEY: 'OA4j_Rv0LULxjXyP'
+# # WEBSITE: 'WEBSTAGING'
+# # MID: 'lMJjRX27579380024942'
+# # INDUSTRY_TYPE_ID: 'Retail'
+# # CHANNEL_ID: 'WEB'
+# # payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
+# # CALLBACK:  'http://localhost:3001/confirm_payment'
+# aws_key_id: AKIAJZFHZJ2NNOKZUDUA
+# aws_key_secret: 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
+# PAYTM_MERCHANT_KEY: 'lMJjRX27579380024942'
+# WEBSITE: 'WEBSTAGING'
+# MID: 'nklxey40272993747095'
+# INDUSTRY_TYPE_ID: 'Retail'
+# CHANNEL_ID: 'WEB'
+# payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
+# CALLBACK_URL: "http://localhost:7001/confirm_payment"
+# SMTP_SERVER: 'smtp.gmail.com'
+# SMTP_PORT: '587'
+# DOMAIN: 'localhost'
+# SMTP_USER: 'testing.bittern@gmail.com'
+# SMTP_PASS: 'bittern12345'
+# HOST_URL: localhost:6001

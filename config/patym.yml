@@ -1,0 +1,19 @@
+defaults: &defaults
+  PAYTM_MERCHANT_KEY: 'Tj6GcT!EzP3zQbxt'
+  WEBSITE: 'WEBSTAGING'
+  MID: 'nklxey40272993747095'
+  INDUSTRY_TYPE_ID: 'Retail'
+  CHANNEL_ID: 'WEB'
+  payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
+  # CALLBACK:  "#{ENV.fetch('APP_HOST')}/confirm_payment"
+# Development environment
+development:
+  <<: *defaults
+
+# Test Enviroment
+test:
+  <<: *defaults
+
+# Production Environment
+production:
+  <<: *defaults
