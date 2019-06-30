@@ -409,13 +409,17 @@
         <h3>Categories</h3>
         <nav class="left_menu">
           <ul>
-            <li><a href="#">Solids <span>(21)</span></a></li>
-            <li><a href="#">Liquids <span> (27)</span></a></li>
-            <li><a href="#">Spray <span>(33)</span></a></li>
-            <li><a href="#">Electric <span>(17)</span></a></li>
-            <li><a href="#">For Cars <span>(23)</span></a></li>
-            <li><a href="#">For Room <span>(7)</span></a></li>
-            <li class="last"><a href="#">Other <span>(135)</span></a></li>
+            <% Category.all.each do |category|%>
+              <li class="<%= is_active_controller('products') %>">
+                <a href=""></i> <span class="nav-label"><%= category.name %></span> <span class="fa arrow">
+                  <% category.sub_categories.each do |sub_category|%>
+                    <% sub_category.sub_category_types.each do |sub_category_type|%>
+                      (<%= sub_category_type.products.count %>)
+                    <% end %>
+                  <% end %>
+                </span></a>  
+              </li>
+            <% end %>
           </ul>
         </nav>
         <!-- .left_menu -->

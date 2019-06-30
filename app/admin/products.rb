@@ -11,7 +11,7 @@ index do
   column :price
   column :full_price
   column "image" do |img|
-    image_tag (img.image.url) ,width: 50, height: 50
+    image_tag (img.image.url) ,width: 50, height: 50 rescue nil
   end
   column :status
   actions

@@ -1,0 +1,37 @@
+ <html>
+
+  <head>
+
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+
+  </head>
+
+  <body>
+
+    <h1>Welcome to Market Theme, <%= @user.name %></h1>
+
+    <p>
+      You have successfully Booked Your Product ,
+      <br/>
+      User Information: <br/>
+      your username is:<%= @user.name %> <br>
+      Your Email is : <%= @user.email %>
+    </p>
+
+    <p>
+      Booking Information:<br/>
+      Product Name: <%= @booking_data.product.name %><br/>
+    </p>
+
+    <p>
+      Payment Information:<br/>
+      Order Id: <%= @create_payment.order_id %><br/>
+      Amount: <%= @create_payment.txn_amount %>
+    </p>
+
+
+    <p>Thanks for joining and have a great day!</p>
+
+  </body>
+
+</html>

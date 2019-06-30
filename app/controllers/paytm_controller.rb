@@ -62,8 +62,8 @@ class PaytmController < ApplicationController
           @booking_data.save!
           @create_payment = create_payment
           @create_payment.save!
-          # UserMailer.welcome_email(current_user).deliver_now
-          # UserMailer.checkout_email(current_user, @booking_data, @create_payment).deliver_now
+          # UserMailer.welcome_email(current_user, @booking_data, @create_payment).deliver_now
+          UserMailer.checkout_email(current_user, @booking_data, @create_payment).deliver_now
           # UserMailer.admincheckout_email(current_user, @booking_data, @create_payment).deliver_now
          format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
       #   # format.json { render :show, status: :created, location: @booking }

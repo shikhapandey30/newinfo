@@ -81,8 +81,8 @@
 				          </div>
 				        </div>
 
-				        <a><%= link_to products_add_wishlist_path(product), class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
-				        	<i class="fa fa-heart" style="font-size:18px;color:red"></i>
+				        <a><%= link_to products_add_wishlist_path(product), class: "btn btn-default1 box_size btn_size_info", data: {method: :post, remote: true} do %>
+				        	<i class="fa fa-heart" style="font-size:18px;color:#e65e5e;"></i>
 				        </a>	
                 <% end %>
                 <a href="#" class="obn"></a>
@@ -193,4 +193,9 @@
 </section>
 <!-- #main -->
 <div class="clear"></div>
-
+<style type="text/css">
+  .btn_size_info
+  {
+    padding: 13px 15px !important;
+  }
+</style>
