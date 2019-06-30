@@ -6,5 +6,9 @@ class User < ApplicationRecord
   has_many :authentications   
   has_many :rating_reviews
   has_many :wishlists  
-  has_many :bookings  
+  has_many :bookings
+
+  def name
+   	first_name.to_s.titlecase + " " + last_name.to_s.titlecase
+  end  
 end

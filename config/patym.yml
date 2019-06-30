@@ -1,7 +1,7 @@
 defaults: &defaults
-  PAYTM_MERCHANT_KEY: 'Tj6GcT!EzP3zQbxt'
+  PAYTM_MERCHANT_KEY: 'OA4j_Rv0LULxjXyP'
   WEBSITE: 'WEBSTAGING'
-  MID: 'nklxey40272993747095'
+  MID: 'lMJjRX27579380024942'
   INDUSTRY_TYPE_ID: 'Retail'
   CHANNEL_ID: 'WEB'
   payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'

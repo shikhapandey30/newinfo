@@ -26,6 +26,17 @@
             <!-- <input type="email" name="" class="" value="" /> -->
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
+
+          <div class="first_name">
+            <strong>First Name:</strong><sup class="surely">*</sup><br/>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+          </div>
+
+          <div class="last_name">
+            <strong>Last Name:</strong><sup class="surely">*</sup><br/>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "Last name" %>
+          </div>
+
           <!-- .email -->
           <div class="password">
             <% if @minimum_password_length %>

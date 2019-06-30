@@ -78,14 +78,14 @@
                 <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
                   Add to Wishlist
                 <% end %>
-                <%= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
+                <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
                 </div>
 
 
 
               </div>
               <div class="cart">
-                <a href="#" class="bay">Add to Cart</a>
+                <a href="/products/<%= @product.id %>/bookings/new" class="bay">Add to Cart</a>
                 <input type="text" name="" class="number" value="1" />
                 <span>Quantity:</span>
               </div>

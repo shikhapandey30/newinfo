@@ -8,6 +8,7 @@ class PaytmController < ApplicationController
     #add application logic unique to your app
     @booking = current_user.bookings.new(booking_params)
     @booking.product_id = Product.find(params[:product_id]).id
+    @product_price  = Product.find(params[:product_id])
     session[:booking] = @booking
     paramList = Hash.new
     paramList["MID"] =  ENV['MID']
@@ -15,7 +16,7 @@ class PaytmController < ApplicationController
     paramList["CUST_ID"] = "#{Time.now.to_i.to_s}"
     paramList["INDUSTRY_TYPE_ID"] = ENV['INDUSTRY_TYPE_ID']
     paramList["CHANNEL_ID"] = ENV['CHANNEL_ID']
-    paramList["TXN_AMOUNT"] = 2
+    paramList["TXN_AMOUNT"] = @product_price.price
     # paramList["MSISDN"] = current_user.phone
     paramList["EMAIL"] = current_user.email
     paramList["WEBSITE"] = ENV['WEBSITE']
@@ -47,7 +48,7 @@ class PaytmController < ApplicationController
 
     # if @is_valid_checksum == true
       if @paytmparams["STATUS"] == "TXN_SUCCESS"
-        puts "payment vijay TXN_SUCCESS"
+        puts "payment shikha TXN_SUCCESS"
         # current_user = User.where(email: @paytmparams["EMAIL"]).last
         # @booking = current_user.bookings.new(booking_params)
         # @booking.stay_home_id = StayHome.friendly.find(params[:stay_home_id]).id
@@ -64,7 +65,7 @@ class PaytmController < ApplicationController
           # UserMailer.welcome_email(current_user).deliver_now
           # UserMailer.checkout_email(current_user, @booking_data, @create_payment).deliver_now
           # UserMailer.admincheckout_email(current_user, @booking_data, @create_payment).deliver_now
-         format.html { redirect_to @booking_data, notice: 'Booking was successfully created.' }
+         format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
       #   # format.json { render :show, status: :created, location: @booking }
         end
       else
