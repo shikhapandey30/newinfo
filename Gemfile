@@ -84,3 +84,4 @@ gem "mini_magick"
 # gem 'will_paginate-bootstrap'
 gem 'will_paginate', '~> 3.1.1'
 gem 'figaro'
+gem 'font-awesome-rails'

@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   end  
   match '/paytm_payment' => 'paytm#start_payment', via: [:post], :as => :paytm_payment
   match '/confirm_payment' => 'paytm#verify_payment', via: [:post]
+  post '/likes' => 'likes#create', as: :like_create
+  post '/dislikes' => 'likes#dislike', as: :dislike_create
 end

@@ -16,6 +16,7 @@
  *= require pagination
  *= require_self
  *= require rating
+ *= require font-awesome
  */
 
 .paymentWrap {

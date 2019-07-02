@@ -5,6 +5,8 @@ class Product < ApplicationRecord
 	# Association
 	belongs_to :sub_category_type
   has_many :rating_reviews
+  has_many :likes, as: :likeable, dependent: :destroy
+
 
 
 	# Delegates

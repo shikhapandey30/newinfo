@@ -78,8 +78,11 @@
                 <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
                   Add to Wishlist
                 <% end %>
+
+                
                 <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
                 </div>
+                <%= render partial: "likes/like", locals: {product: @product } %><hr>
 
 
 
