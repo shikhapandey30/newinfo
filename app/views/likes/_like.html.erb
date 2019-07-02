@@ -2,19 +2,24 @@
   <!--Like-->
 	(<%=count_like(product)%>)
 	<% if current_user.is_liked(product) %>
-	<%= link_to "liked", like_create_path(id: product.id, type: product.class.name), method: :post, remote: true %>
+		<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+			<i class= "fa fa-thumbs-up" style="font-size:15px;color:#dc6060;"></i>
+		<% end %>
 	<%else%>
-			<%= link_to "like", like_create_path(id: product.id, type: product.class.name), method: :post, remote: true, class: "fa fa-thumbs-up" %>
-			<%end%>
-			<i class="fa fa-thumbs-up"></i>
-
-
+		<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+			<i class= "fa fa-thumbs-up" style="font-size:15px;"></i>
+		<% end %>
+	<%end%>
 	<!--dislike-->
-	<br/>
+	
+	(<%=count_dislike(product)%>)
 	<% if current_user.is_disliked(product) %>
-		<%= link_to "Disliked", dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true %>
-				<%else%>
-				<%= link_to "Dislike", dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true, class: "btn btn-primary" %>
-			<%end%>
-
+		<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+			<i class= "fa fa-thumbs-down" style="font-size:15px;color:#dc6060;"></i>
+		<% end %>
+	<%else%>
+		<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true  do %>
+			<i class= "fa fa-thumbs-down" style="font-size:15px;"></i>
+		<% end %>
+	<%end%>
 </div>

@@ -185,6 +185,7 @@
                     <div class="form-group">
                       <h3><%= f.label "Review" %></h3>
                       <%= f.text_area :review, class:"form-control", rows:"12", :required => true, value: @rating_review.review  %>
+                      <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
                   </div>
                 </div>
@@ -216,6 +217,7 @@
                     <div class="form-group">
                       <h3><%= f.label "Review" %></h3>
                       <%= f.text_area :review, class:"form-control", rows:"12", :required => true, value: @rating_review.review  %>
+                      <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
                   </div>
                 </div>
@@ -253,7 +255,19 @@
               <div class="review-block">
                 <div class="row">
                   <div class="col-sm-3">
-                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                    <div class="preview slides_container">
+                      <div class="prev_bg">
+                        <a class="jqzoom zoomWrapperImage" rel="gal1" href="<%= rating_review.image %>" style="width: 50%; height: 100px;">
+                          <% if rating_review.image.present?  %>
+                            
+                              <img src="<%= rating_review.image %>" style="width: 60px; height: 60px;" title="" alt=""/>
+                            
+                          <% else %>  
+                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                          <% end %>
+                        </a>  
+                       </div>
+                      </div>  
                     <div class="review-block-name"><a href="#"><%= rating_review.user.email %></a></div>
                     <div class="review-block-date"><%= rating_review.created_at.strftime('%d %b %Y')%><br/><%= time_ago_in_words(rating_review.created_at, include_seconds: true) %> Ago</div>
                   </div>
@@ -561,5 +575,10 @@
   .inla
   {
   color: red;
+  }
+  .zoomWrapperImagyse
+  {
+    height: 50px !important;
+    width: 50px !important;
   }
 </style>
