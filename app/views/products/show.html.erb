@@ -2,7 +2,7 @@
 <section id="main">
   <div class="container_12">
     <div id="content" class="grid_9">
-      <h1 class="page_title"><%= @product.name %></h1>
+      <h1 class="page_title"><%= @product.name.titleize %></h1>
       <div class="product_page">
         <div class="grid_4 img_slid" id="products">
           <!-- <img src="<%#= asset_path('sale.png') %>" alt="Sale" class="sale"> -->
@@ -42,7 +42,43 @@
               <a href="#"></a>
               <a href="#"></a>
               <span>1 REVIEW(S)</span>
-              <a class="add_review" href="#">ADD YOUR REVIEW</a>
+              <!-- <a class="add_review" href="#">ADD YOUR REVIEW</a> -->
+              <a href="/products/<%= @product.id %>/bookings/new" class="add_review">Add to Cart</a>
+
+              
+
+            </div>
+            <div class="price">
+              <span class="display_price">₹<%= @product.display_price %></span>&nbsp;&nbsp;
+                <% if @product.full_price.to_f > 0 %>
+                  <span class="fix_price"><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
+                <% end %>
+                (<% if @product.discount_percentage %>
+                  <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
+                  </span>
+                <% end %>)
+                &nbsp;&nbsp;
+                  <input type="button" value="Info" onClick="showHideDiv('divMsg')" class="button" style="width: 40px;" /><br><br>
+                  <div id="divMsg" style="background-color: #006969; color: #ffffff; height: 200px; width: 200px; text-align: center; display:none" class="fa fa-info-circle">
+                    <b>
+                      <%= @product.name.titleize %>
+                      <br/><br/>
+                      Price: <span>₹<%= @product.display_price %></span>
+                      <br/><br/>
+                      Full Price: 
+                      <% if @product.full_price.to_f > 0 %>
+                        <span><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
+                      <% end %> 
+                      <br/><br/>
+                      Discount: 
+                      (<% if @product.discount_percentage %>
+                        <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
+                        </span>
+                      <% end %>)   
+                    </b>
+                  </div>
+                
+              
             </div>
             <p><%= @product.description %></p>
             <div class="ava_price">
@@ -55,43 +91,26 @@
                 </div>
               </div>
               <!-- .availability_sku -->
-              <div class="price">
-                <div class="price_new">₹<%= @product.display_price %>
-                </div>
-                <div class="">
-                  <% if @product.full_price.to_f > 0 %>
-                  <del> ₹<%= @product.display_full_price %></del>
-                  <% end %>
-                  (<% if @product.discount_percentage %>
-                  <span class="discount"><%= @product.discount_percentage.to_i %>%  off</span>
-                  <% end %>)
-                </div>
-              </div>
+              
               <!-- .price -->
             </div>
             <!-- .ava_price -->
             <div class="block_cart">
               <div class="obn_like">
-                <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
-                <div class="like">
-
-                <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
-                  Add to Wishlist
-                <% end %>
-
-                
-                <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
-                </div>
+                  <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
+                  <div class="like">
+                    <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+                      Add to Wishlist
+                    <% end %>
+                    <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
+                  </div>
                 <%= render partial: "likes/like", locals: {product: @product } %><hr>
-
-
-
               </div>
-              <div class="cart">
+              <!-- <div class="cart">
                 <a href="/products/<%= @product.id %>/bookings/new" class="bay">Add to Cart</a>
                 <input type="text" name="" class="number" value="1" />
                 <span>Quantity:</span>
-              </div>
+              </div> -->
               <div class="clear"></div>
             </div>
             <!-- .block_cart -->
@@ -257,7 +276,7 @@
                   <div class="col-sm-3">
                     <div class="preview slides_container">
                       <div class="prev_bg">
-                        <a class="jqzoom zoomWrapperImage" rel="gal1" href="<%= rating_review.image %>" style="width: 50%; height: 100px;">
+                        <!-- <a class="jqzoom zoomWrapperImage" rel="gal1" href="<%= rating_review.image %>" style="width: 50%; height: 100px;"> -->
                           <% if rating_review.image.present?  %>
                             
                               <img src="<%= rating_review.image %>" style="width: 60px; height: 60px;" title="" alt=""/>
@@ -265,7 +284,7 @@
                           <% else %>  
                             <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
                           <% end %>
-                        </a>  
+                        <!-- </a>   -->
                        </div>
                       </div>  
                     <div class="review-block-name"><a href="#"><%= rating_review.user.email %></a></div>
@@ -581,4 +600,37 @@
     height: 50px !important;
     width: 50px !important;
   }
+  .display_price
+  {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .discount_percentage
+  {
+    font-size: 16px;
+    font-weight: 500;
+    color: #388e3c;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+  .fix_price
+  {
+    color: grey;
+  }
+  .button {border-radius: 50%;}
 </style>
+<script type="text/javascript">
+  function showHideDiv(ele) {
+    var srcElement = document.getElementById(ele);
+    if (srcElement != null) {
+      if (srcElement.style.display == "block") {
+        srcElement.style.display = 'none';
+      }
+      else {
+        srcElement.style.display = 'block';
+      }
+      return false;
+    }
+  }
+</script>

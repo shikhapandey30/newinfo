@@ -44,7 +44,7 @@ MID: 'lMJjRX27579380024942'
 INDUSTRY_TYPE_ID: 'Retail'
 CHANNEL_ID: 'WEB'
 payment_url: 'https://securegw-stage.paytm.in/theia/processTransaction'
-CALLBACK_URL: "https://market-theme.herokuapp.com/confirm_payment"
+CALLBACK_URL: "http://localhost:7001/confirm_payment"
 SMTP_SERVER: 'smtp.gmail.com'
 SMTP_PORT: '587'
 DOMAIN: 'localhost'
