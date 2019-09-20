@@ -30,8 +30,8 @@ development:
   encoding: unicode
   database: new_1_development
   pool: 5
-  username: root
-  password: root
+  username: postgres
+  password: postgres
   host: localhost
 
 production:
@@ -39,6 +39,6 @@ production:
   encoding: unicode
   database: new_1_production
   pool: 5
-  username: root
-  password: root
+  username: postgres
+  password: postgres
   host: localhost

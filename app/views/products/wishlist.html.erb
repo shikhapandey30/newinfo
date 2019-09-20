@@ -1,61 +1,45 @@
-<div class="container pt-40 pb-40">
-  <div class="row pb-10">
-    <div class="col-md-12 pt-1 text-center">
-      <h2 class="text-center">WISH LIST</h2>
-    </div>
-  </div>
-  <!-- <%# if current_user.wishlists.present? %>
-    <div class="container">
-      <div class="row-breadcrumbs">
-        <div class="sort text-right">
-          <span>Sort by:</span>
-          <%#= link_to "Price (Low to High)", "/wishlist?q=#{params[:q]}&sort=1", class: "#{params[:sort] == '1' ? 'disabled' : ''}" %>
-          <%#= link_to "Price (High to Low)", "/wishlist?q=#{params[:q]}&sort=2", class: "#{params[:sort] == '2' ? 'disabled' : ''}" %>
-          <%#= link_to "Newest First", "/wishlist?q=#{params[:q]}&sort=3", class: "#{params[:sort] == '3' ? 'disabled' : ''}" %>
-          <%#= link_to "Category", "/wishlist?q=#{params[:q]}&sort=4", class: "#{params[:sort] == '4' ? 'disabled' : ''}" %>
-        </div>
-      </div>
-    </div>
-  <%# end %> -->
-  <% if current_user.wishlists.present? %>
-    <div class="card-deck mb-3 text-center row">
-      <% @products.each do |product| %>
-        <div class="col-sm-6 col-md-6 col-lg-4">
-          <div class="card">
-            <div class="card-body">
+<p id="notice"><%= notice %></p>
+<% if current_user.wishlists.present? %>
+  <h1 class="text-center">Wishlists Products</h1>
+  <table class="table table-hover" border="2">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th ></th>
+      </tr>
+    </thead>
 
-              <% if product.image.present? %>
-                <%= link_to image_tag(product.image_url(:thumb), class: "image"), product_path(product) rescue nil %>
-              <% else %>
-                <img src="<%= asset_path('sku.jpg') %>" alt="" title="" width="244" height="158"/>
-              <% end %>  
-              <hr>
-               <div class="blog-post-actions">
-                <h5 class="blog-post-bottom"><%= product.try(:name) %></h5>
-                  <p class="price-detail-wrap"> 
-                    <span class="price h3">Rs. <%= product.display_price %>/
-                      <% if product.full_price.to_f > 0 %>
-                        <del> <%= product.display_full_price %></del>
-                      <% end %>
-                    </span>  ❤ 
-                  </p>
-               </div>
-            </div>
-          </div>
-        </div>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description %></td>
+          <td><%= product.price %></td>
+          <td><a href="/products/<%= product.id %>"><%= image_tag product.image.url(:thumb), :size => "50x50" %></a></td>
+          <td><%= product.category.name %></td>
+          <td><%= link_to "Remove", remove_wishlist_path(product), data: {method: :delete, remote: true}  %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-  <% else %>
-    <div>
-      <h3 class="text-center">Your Wishlist is empty</h3>
-    </div>
-  <% end %>
-</div>
-<style type="text/css">
-  .image{
-    height: 158px;
-  }
-  .card-deck .card{
-    margin-top: 18px;
-  }
-</style>
+
+        <%#= link_to "Place Order", remove_wishlist_path(product), data: {method: :delete, remote: true}, class: 'btn btn-info'  %>
+    </tbody>
+  </table>
+  <br>
+<% end %>  
+
+
+
+
+
+
+
+
+
+
+
+

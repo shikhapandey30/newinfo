@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_052230) do
+ActiveRecord::Schema.define(version: 2019_09_20_122648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2019_07_02_052230) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "country"
+    t.string "post_code"
+    t.string "address"
+    t.string "district"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -57,11 +67,39 @@ ActiveRecord::Schema.define(version: 2019_07_02_052230) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "product_id"
+    t.float "unit_price"
+    t.integer "quantity", default: 1
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_done", default: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -71,6 +109,26 @@ ActiveRecord::Schema.define(version: 2019_07_02_052230) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "cart_id"
+    t.integer "total"
+    t.string "status"
+    t.text "contact_name"
+    t.text "delivery_address"
+    t.text "ccname"
+    t.text "ccnumber"
+    t.text "ccexpirydate"
+    t.integer "quantity"
+    t.string "stripe_token"
+    t.string "stripe_token_type"
+    t.integer "address_id"
+    t.integer "cart_item_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -107,6 +165,7 @@ ActiveRecord::Schema.define(version: 2019_07_02_052230) do
     t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "sub_categories", force: :cascade do |t|

@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+
+	def current_cart
+    if current_user.present?
+      return Cart.find_or_create_by(user_id: current_user.id, is_done: false)
+    end
+  end
+  helper_method :current_cart
    # before_action :authenticate_user!
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	protected

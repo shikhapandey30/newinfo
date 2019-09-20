@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :rating_reviews
   has_many :wishlists  
   has_many :bookings
+  has_one :cart
+
+  has_many :addresses, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   def name
    	first_name.to_s.titlecase + " " + last_name.to_s.titlecase

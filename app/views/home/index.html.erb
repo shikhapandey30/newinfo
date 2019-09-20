@@ -1,4 +1,11 @@
 <!-- .block_nav_primary -->
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert" id ="alert"><%= flash[:alert] %></div>
+<% end %>
 <div class="clear"></div>
 <div class="container_12">
   <div class="grid_12">
@@ -101,7 +108,7 @@
                     </a>
                   </div>
                   <% if product.description.present? %>
-                    <h3 class="title"><%= product.description.truncate(50) %></h3>
+                    <h3 class="title"><%= raw product.description.truncate(50) %></h3>
                   <% end %>  
                   <%#= product.name %>
                   <div class="cart"> 
@@ -118,6 +125,8 @@
                     <!-- <%# if product.discount_percentage %>
                       <span class="discount"><%#= product.discount_percentage.to_i %>%  off</span>
                     <%# end %> -->
+                    <a  href="/products/<%= product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                    <a class="add-to-cart" href="/products/<%= product.id %>/cart">Add to cart</a>
                     <a href="#" class="obn"></a>
                     <a href="#" class="like"></a>
                     <a href="#" class="bay"></a>

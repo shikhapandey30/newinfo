@@ -20,7 +20,8 @@ end
 form do |f|
   f.inputs do
     f.input :name
-    f.input :description
+    # f.input :description, as: :ckeditor
+    f.input :description, as: :ckeditor
     f.input :sub_category_type_id, as: :select, collection: (Category.form_select_categories_type(f.object))   
     f.input :price
     f.input :full_price

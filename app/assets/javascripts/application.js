@@ -20,6 +20,7 @@
 //= require js/jquery.carouFredSel-6.2.0-packed
 //= require js/jquery.touchSwipe.min
 //= require js/checkbox
+//= require ckeditor/init
 //= require js/radio
 //= require js/selectBox
 //= require js/jquery.jqzoom-core

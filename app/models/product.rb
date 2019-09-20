@@ -4,10 +4,10 @@ class Product < ApplicationRecord
 
 	# Association
 	belongs_to :sub_category_type
-  has_many :rating_reviews
+  has_many :rating_reviews, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
-
-
+  belongs_to :user,  optional: true
+  # has_many :users, through: :rating_reviews, dependent: :destroy
 
 	# Delegates
 	delegate :category, to: :sub_category, allow_nil: true

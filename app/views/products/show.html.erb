@@ -75,9 +75,10 @@
                 <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
                 <div class="like">
 
-                <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
-                  Add to Wishlist
-                <% end %>
+                <%#= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+                  <!-- Add to Wishlist -->
+                <%# end %>
+                <button class="add-to-shopping-bag btn btn-primary" type="button"><a href="/products/<%= @product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></button>
 
                 
                 <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
@@ -183,10 +184,18 @@
                   </div>
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <h3><%= f.label "Review" %></h3>
-                      <%= f.text_area :review, class:"form-control", rows:"12", :required => true, value: @rating_review.review  %>
+                      <h3><%= f.label "Revieweeeeeeee" %></h3>
+                      <%= f.text_area :review, :class => 'ckeditor' %>
+                       <h3><%= f.label "Review" %></h3>
+                      <%= f.text_area :review, class:"form-control client_member_body", rows:"12", :required => true, value: @rating_review.review  %>
                       <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
+                    <script type="text/javascript">
+                      $('.ckeditor').ckeditor({
+  // optional config
+});
+
+                    </script>
                   </div>
                 </div>
                 <div class="row">
@@ -215,8 +224,11 @@
                   </div>
                   <div class="col-sm-12">
                     <div class="form-group">
+                      <h3><%= f.label "Revieweeeeeeee" %></h3>
+                      <%= f.text_area :review, :class => 'ckeditor' %>
                       <h3><%= f.label "Review" %></h3>
-                      <%= f.text_area :review, class:"form-control", rows:"12", :required => true, value: @rating_review.review  %>
+                      <%#= f.text_area :review, class:"form-control client_member_body", rows:"12", :required => true, value: @rating_review.review  %>
+                      <%= f.text_area :review, rows: "20", class: "client_member_body form-control rounded", placeholder: ""%>
                       <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
                   </div>
@@ -582,3 +594,10 @@
     width: 50px !important;
   }
 </style>
+<script type="text/javascript">
+  setTimeout(function(){
+    $(document).ready(function(){
+      CKEDITOR.replaceClass = 'client_member_body';
+    });
+  },500);
+  </script>
