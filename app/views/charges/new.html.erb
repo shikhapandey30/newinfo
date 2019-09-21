@@ -72,7 +72,7 @@
             type="submit" disabled="disabled" class="dsd" 
             value="Pay with Card"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-amount="<%= (current_cart.sub_total * 100) + 5 %>"
+            data-amount="<%= (current_cart.sub_total * 100) %>"
             data-locale="auto"
             data-name="<%= current_user.email %>"
             data-description="Product Order"
