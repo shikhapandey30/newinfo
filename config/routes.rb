@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'charges/new' => "charges#new"
   get 'charges/create' => 'charges#create'
   post 'order' => "orders#all_order_show"
+  get 'orders_history' => "orders#index"
   
   devise_for :users
 	root 'home#index'

@@ -125,12 +125,10 @@
                     <!-- <%# if product.discount_percentage %>
                       <span class="discount"><%#= product.discount_percentage.to_i %>%  off</span>
                     <%# end %> -->
-                    <a  href="/products/<%= product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                    <a class="add-to-cart" href="/products/<%= product.id %>/cart">Add to cart</a>
-                    <a href="#" class="obn"></a>
-                    <a href="#" class="like"></a>
-                    <a href="#" class="bay"></a>
+                    <a href="/products/<%= product.id %>/wishlist" class="like">
                     
+                    <a href="#" class="obn"></a>
+                    <a href=" /products/<%= product.id %>/cart" class="bay"></a>
                   </div>
                 </div>
                  
@@ -375,3 +373,13 @@
 </section>
 <!-- #main -->
 <div class="clear"></div>
+<style type="text/css">
+  .cart_st {
+    width: 42px;
+    display: block;
+    float: left;
+    height: 41px;
+    margin: 0px;
+    border-right: 1px solid #e0e0e0;
+}
+</style>

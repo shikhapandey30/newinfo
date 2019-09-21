@@ -755,7 +755,7 @@ form.search input.entry_form:focus{
     margin: 16px 0 0 2px;
     width: 71px;
     height: 35px;
-    color: #444;
+    /*color: #444;*/
     text-align: center;
     text-decoration: none;
     font: normal 11px/35px Segoeui, Arial, Verdana, serif;

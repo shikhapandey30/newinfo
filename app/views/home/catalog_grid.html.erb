@@ -80,15 +80,9 @@
                     </div>
 				          </div>
 				        </div>
-
-				        <a><%= link_to products_add_wishlist_path(product), class: "btn btn-default1 box_size btn_size_info", data: {method: :post, remote: true} do %>
-				        	<i class="fa fa-heart" style="font-size:18px;color:#e65e5e;"></i>
-				        </a>	
-                <% end %>
+				        <a href="/products/<%= product.id %>/wishlist" class="like">
                 <a href="#" class="obn"></a>
-				        <a href="#" class="bay"></a>
-				        
-				        
+                <a href=" /products/<%= product.id %>/cart" class="bay"></a>
 				      </div>
 				    </div>
 				  <% end %>

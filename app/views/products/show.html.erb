@@ -110,7 +110,7 @@
                 </div>
                   <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
                   <div class="like">
-                    <%= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+                    <%= link_to product_add_wishlist_path(@product), class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
                       Add to Wishlist
                     <% end %>
                     <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>

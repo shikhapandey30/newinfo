@@ -43,8 +43,10 @@
         <tr>
           <td><%= item.product.name rescue nil %></td>
           <td><%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td>
-            <% @add = item.cart.user.addresses.first %>
-          <td><%= @add.address %>, <%= @add.country%>, <%= @add. post_code%>, <%= @add. district%> </td>
+            <%# @add = item.cart.user.addresses.first %>
+            <% order_address_id = order.address_id %>
+            <% @add = Address.find_by(id: order_address_id)%>
+          <td><%= @add.country%>, <%= @add.post_code%>, <%= @add.district%> </td>
           <td><%= item.quantity rescue nil %></td>
           <td><%= item.product.price  || 0.0  rescue nil %></td>
           <td><%= item.quantity * item.product.price  || 0.0 rescue nil  %></td>

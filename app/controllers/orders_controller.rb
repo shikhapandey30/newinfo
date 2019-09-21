@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
 		end
 
 		def all_order_show
-			# byebug
 			@amount = current_cart.sub_total.to_i
 	    customer = Stripe::Customer.create({
 	      email: params[:stripeEmail],
@@ -35,7 +34,7 @@ class OrdersController < ApplicationController
     	# 	flash[:error] = e.message
 
 			@user = current_user
-			@order = Order.create!(user_id: @user.id, cart_id: current_cart.id, total: current_cart.sub_total, stripe_token: params[:stripeToken], stripe_token_type: params[:stripeTokenType])
+			@order = Order.create!(user_id: @user.id, cart_id: current_cart.id, total: current_cart.sub_total, stripe_token: params[:stripeToken], stripe_token_type: params[:stripeTokenType], address_id: params[:address_id])
 			current_cart.update(is_done: true)
 			# if @order.save!
 					UserMailer.welcome_email(@user).deliver

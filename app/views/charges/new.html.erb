@@ -9,29 +9,30 @@
 <center><button type="button" class="btn btn-info text-white"><a href="/addresses/new">Add New Address<i class="fa fa-home"></i></a>
 </button></center>
 
-<%= form_tag order_path do |f| %>
-    <%= hidden_field_tag :cart_id, value = current_user.cart.id %>
-       <% current_user.addresses.each do |add| %>
-            <label class="radio"><input type="checkbox" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label><br><br>
-        <% end %>
+<%#= form_tag order_path do |f| %>
+    <%#= hidden_field_tag :cart_id, value = current_user.cart.id %>
+       <%# current_user.addresses.each do |add| %>
+            <!-- <label><input type="radio" name="address_id"  value= "<%#= add.id %>" /><%#= add.full_address %></label><br><br> -->
+        <%# end %>
+         <!-- <input type="radio"  /> -->
     
-  <article>
-    <% if flash[:error].present? %>
+  <!-- <article>
+    <%# if flash[:error].present? %>
       <div id="error_explanation">
-        <p><%= flash[:error] %></p>
+        <p><%#= flash[:error] %></p>
       </div>
-    <% end %>
+    <%# end %>
     <label class="amount">
       <span>Amount: <%= current_cart.sub_total  %></span>
     </label>
-  </article>
-  <% if current_user.addresses.present? %>
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  </article> -->
+  <%# if current_user.addresses.present? %>
+    <!-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
-          data-amount="<%= (current_cart.sub_total * 100) + 5 %>"
-          data-locale="auto"></script>
-  <% end %>        
+          data-amount="<%#= (current_cart.sub_total * 100) + 5 %>"
+          data-locale="auto"></script> -->
+  <%# end %>        
 
  
           
@@ -43,6 +44,68 @@
                             data-amount="<%#= (current_user.cart.cart_items.sum(:price) + 5) * 100 %>"
                             data-locale="auto"></script> -->
 
-<% end %>
+<%# end %>
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<%= form_tag order_path do |f| %>
+        <noscript>You must <a href="http://www.enable-javascript.com" target="_blank">enable JavaScript</a> in your web browser in order to pay via Stripe.</noscript>
+
+        <%= hidden_field_tag :cart_id, value = current_user.cart.id %>
+       <% current_user.addresses.each do |add| %>
+            <label><input type="radio" name="address_id"  value= "<%= add.id %>" /><%= add.full_address %></label><br><br>
+        <% end %>
+         <!-- <input type="radio"  /> -->
+    
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span>Amount: <%= current_cart.sub_total  %></span>
+          </label>
+        </article>
+
+        <input 
+            type="submit" disabled="disabled" class="dsd" 
+            value="Pay with Card"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= (current_cart.sub_total * 100) + 5 %>"
+            data-locale="auto"
+            data-name="<%= current_user.email %>"
+            data-description="Product Order"
+        />
+
+        <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script>
+        $(document).ready(function() {
+            $(':submit').on('click', function(event) {
+                event.preventDefault();
+                var $button = $(this),
+                    $form = $button.parents('form');
+                var opts = $.extend({}, $button.data(), {
+                    token: function(result) {
+                        $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
+                    }
+                });
+                StripeCheckout.open(opts);
+            });
+        });
+        </script>
+<% end %>
+<script type="text/javascript">
+  $(function(){
+    $("input[type='radio']").change(function(){
+        $("input[type='submit']").prop("disabled", false);
+    });
+});
+</script>
+<style type="text/css">
+  .dsd
+  {
+    width: 10%;
+  }
+</style>

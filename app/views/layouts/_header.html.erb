@@ -11,7 +11,11 @@
     <!-- .grid_3 -->
     <div class="grid_6">
       <div class="welcome">
-        Welcome visitor you can <a href="/users/sign_in">login</a> or <a href="/users/sign_up">create an account</a>.
+        <% if current_user.present? %>
+          Welcome <%= current_user.email %>
+        <% else %>
+            Welcome visitor you can <a href="/users/sign_in">login</a> or <a href="/users/sign_up">create an account</a>.
+        <% end %> 
       </div>
       <!-- .welcome -->
     </div>
@@ -55,26 +59,37 @@
     <div class="grid_6">
       <ul id="cart_nav">
         <li>
-          <a class="cart_li" href="/shopping_cart.html">Cart <span>$0.00</span></a>
+          <%  cart = Cart.where(is_done: false).first %>
+          <a class="cart_li" href="/cart">
+            <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
+            <% end %>
+          </a>
           <ul class="cart_cont">
             <li class="no_border">
-              <p>Recently added item(s)</p>
+              <p>Recently added cart item(s)</p>
             </li>
-            <li>
-              <a href="/product_page.html" class="prev_cart">
-                <div class="cart_vert"><img src="<%= asset_path('cart_img.png') %>" alt="" title=""></div>
-              </a>
-              <div class="cont_cart">
-                <h4>Caldrea Linen and Room Spray</h4>
-                <div class="price">1 x $399.00</div>
-              </div>
-              <a title="close" class="close" href="#"></a>
-              <div class="clear"></div>
-            </li>
-            <li>
+            <% if current_cart.cart_items.any? %>
+              <% current_cart.cart_items.each do |cart_item| %>
+                <li>
+                  <!-- <a href="/product_page.html" class="prev_cart">
+                    <div class="cart_vert"><img src="<%#= asset_path('cart_img.png') %>" alt="" title=""></div>
+                  </a> -->
+
+                  <a href="/product/<%= cart_item.product.id %>" class="prev_cart"><div class="cart_vert"><%= image_tag cart_item.product.image.url(:thumb) %></div>
+                  </a>
+                  <div class="cont_cart">
+                    <h4><%= cart_item.product.name %></h4>
+                    <div class="price">₹<%= cart_item.product.display_price %></div>
+                  </div>
+                  <a title="close" class="close" href="#"></a>
+                  <div class="clear"></div>
+                </li>
+              <% end %>
+            <% end %>    
+            <!-- <li>
               <a href="/product_page.html" class="prev_cart">
                 <div class="cart_vert">
-                  <img src="<%= asset_path('produkt_slid1.png') %>" alt="" title="">
+                  <img src="<%#= asset_path('produkt_slid1.png') %>" alt="" title="">
                 </div>
               </a>
               <div class="cont_cart">
@@ -83,29 +98,83 @@
               </div>
               <a title="close" class="close" href="#"></a>
               <div class="clear"></div>
-            </li>
+            </li> -->
             <li class="no_border">
-              <a href="/shopping_cart.html" class="view_cart">View shopping cart</a>
-              <a href="/checkout.html" class="checkout">Procced to Checkout</a>
+              <a href="/cart" class="view_cart">View shopping cart</a>
+              <a href="/cart" class="checkout">Procced to Checkout</a>
             </li>
           </ul>
         </li>
       </ul>
+      <ul id="cart_nav">
+        <li>
+          <%  cart = Cart.where(is_done: false).first %>
+          <a class="cart_li" href="/cart">
+            <% if current_user.present? %>
+              <%= current_user.wishlists.count rescue nil%>
+            <% end %>
+          </a>
+          <ul class="cart_cont">
+            <li class="no_border">
+              <p>Recently added wishlist item(s)</p>
+            </li>
+            <% product_ids = current_user.wishlists.map(&:product_id) %>
+            <% @products = Product.where(id: product_ids)%>
+            <%# if current_cart.cart_items.any? %>
+              <% @products.each do |product| %>
+                <li>
+                  <!-- <a href="/product_page.html" class="prev_cart">
+                    <div class="cart_vert"><img src="<%#= asset_path('cart_img.png') %>" alt="" title=""></div>
+                  </a> -->
+
+                  <a href="/products/<%= product.id %>" class="prev_cart"><div class="cart_vert"><%= image_tag product.image.url(:thumb), :size => "50x50" %></div>
+                  </a>
+                  <div class="cont_cart">
+                    <h4><%= product.name %></h4>
+                    <div class="price">₹<%= product.price %></div>
+                  </div>
+                  <a title="close" class="close" href="#"></a>
+                  <div class="clear"></div>
+                </li>
+              <% end %>
+            <%# end %>    
+            <!-- <li>
+              <a href="/product_page.html" class="prev_cart">
+                <div class="cart_vert">
+                  <img src="<%#= asset_path('produkt_slid1.png') %>" alt="" title="">
+                </div>
+              </a>
+              <div class="cont_cart">
+                <h4>Caldrea Linen and Room Spray</h4>
+                <div class="price">1 x $399.00</div>
+              </div>
+              <a title="close" class="close" href="#"></a>
+              <div class="clear"></div>
+            </li> -->
+            <li class="no_border">
+              <a href="/wishlist" class="view_cart">View shopping Wishlist</a>
+              <a href="/wishlist" class="checkout">Procced to Checkout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
       <nav class="private">
         <ul>
           <li><a href="#">My Account</a></li>
           <li class="separator">|</li>
-          <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa fa-heart"></i><span class="sr-only">(current)</span><span class="badge"><%= current_user.wishlists.count rescue nil%></a>
-          </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/wishlist"><i class="fa fa-heart"></i><span class="sr-only">(current)</span><span class="badge"><%#= current_user.wishlists.count rescue nil%></a>
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link waves-effect waves-light" href="/cart">
               <i class="glyphicon glyphicon-shopping-cart"></i>
-              <%  cart = Cart.where(is_done: false).first %>
-                <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
-                <% end %>
+              <%#  cart = Cart.where(is_done: false).first %>
+                <%# if current_user.present? %><%#=  current_cart.cart_items.count rescue nil %>
+                <%# end %>
             </a>
-          </li>
+          </li> -->
           <li class="separator">|</li>
           <% if current_user.present? %>
             <li><a href="/users/sign_out">Sign Out</a></li>

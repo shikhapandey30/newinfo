@@ -5,6 +5,7 @@ class Order < ApplicationRecord
 	# has_many :products, through: :order_items
 	# 
 	belongs_to :product, optional: true
+	has_many :address
 
 	default_scope {order("created_at desc")}
 
