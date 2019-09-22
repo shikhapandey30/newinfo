@@ -11,7 +11,9 @@
     <!-- .grid_3 -->
     <div class="grid_6">
       <div class="welcome">
-        Welcome visitor you can <a href="/users/sign_in">login</a> or <a href="/users/sign_up">create an account</a>.
+        <% if !current_user.present? %>
+          Welcome visitor you can <a href="/users/sign_in">login</a> or <a href="/users/sign_up">create an account</a>.
+        <% end %>
       </div>
       <!-- .welcome -->
     </div>
@@ -138,8 +140,8 @@
               </li>
             <% end %>
           </li>    
-          <li class="curent"><a href="/">Home</a></li>
-          <li class="parent">
+          <!-- <li class="curent"><a href="/">Home</a></li> -->
+          <!-- <li class="parent">
             <a href="#">Spray</a>
             <ul class="sub">
               <li><a href="/home/catalog_grid">For home</a></li>
@@ -165,8 +167,8 @@
               <li><a href="/blog.html">Blog posts</a></li>
               <li><a href="/blog_post.html">Blog post view</a></li>
             </ul>
-          </li>
-          <li><a href="/home/catalog_grid">All Products</a></li>
+          </li> -->
+          <li class="curent" ><a href="/home/catalog_grid">All Products</a></li>
           <%if current_user.present?  %>
             
           <% else %>
