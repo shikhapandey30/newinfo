@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 	def index
 		@products = Product.last(4)
 		@featured_product = Product.all.where(status: "active").limit(4)
+		@slider_products = Product.last(10)
   end
 
 	def catalog_grid

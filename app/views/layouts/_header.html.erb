@@ -1,115 +1,96 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container_12">
-  <div id="top">
-    <div class="grid_3 ">
-      <div class="phone_top">
-        <span>Call Us +777 (100) 1234</span>
-      </div>
-      <!-- .phone_top -->
-    </div>
-    <!-- .grid_3 -->
-    <div class="grid_6">
-      <div class="welcome">
-        <% if current_user.present? %>
-          Welcome <%= current_user.email %>
-        <% else %>
-            Welcome visitor you can <a href="/users/sign_in">login</a> or <a href="/users/sign_up">create an account</a>.
-        <% end %> 
-      </div>
-      <!-- .welcome -->
-    </div>
-    <!-- .grid_6 -->
-    <div class="grid_3">
-      <div class="valuta">
-        <ul>
-          <li class="curent"><a href="#">$</a></li>
-          <li><a href="#">&#8364;</a></li>
-          <li><a href="#">&#163;</a></li>
-        </ul>
-      </div>
-      <!-- .valuta -->
-      <div class="lang">
-        <ul>
-          <li class="curent"><a href="#">EN</a></li>
-          <li><a href="#">FR</a></li>
-          <li><a href="#">GM</a></li>
-        </ul>
-      </div>
-      <!-- .lang -->
-    </div>
-    <!-- .grid_3 -->
-  </div>
-  <!-- #top -->
-  <div class="clear"></div>
-  <header id="branding">
-    <div class="grid_3">
-      <hgroup>
-        <h1 id="site_logo"><a href="/" title=""><img src="<%= asset_path('logo.png') %>" alt="Online Store Theme Logo"></a></h1>
-        <h2 id="site_description">Online Store Theme</h2>
-      </hgroup>
-    </div>
-    <!-- .grid_3 -->
-    <div class="grid_3">
-      <form class="search">
-        <input type="text" name="search" class="entry_form" value="" placeholder="Search entire store here..." />
-      </form>
-    </div>
-    <!-- .grid_3 -->
-    <div class="grid_6">
-      <ul id="cart_nav">
-        <li>
-          <%  cart = Cart.where(is_done: false).first %>
-          <a class="cart_li" href="/cart">
-            <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
-            <% end %>
-          </a>
-          <ul class="cart_cont">
-            <li class="no_border">
-              <p>Recently added cart item(s)</p>
-            </li>
-            <% if current_cart.cart_items.any? %>
-              <% current_cart.cart_items.each do |cart_item| %>
-                <li>
-                  <!-- <a href="/product_page.html" class="prev_cart">
-                    <div class="cart_vert"><img src="<%#= asset_path('cart_img.png') %>" alt="" title=""></div>
-                  </a> -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bootstrap 4 Static Navbar</title>
 
-                  <a href="/product/<%= cart_item.product.id %>" class="prev_cart"><div class="cart_vert"><%= image_tag cart_item.product.image.url(:thumb) %></div>
-                  </a>
-                  <div class="cont_cart">
-                    <h4><%= cart_item.product.name %></h4>
-                    <div class="price">₹<%= cart_item.product.display_price %></div>
-                  </div>
-                  <a title="close" class="close" href="#"></a>
-                  <div class="clear"></div>
-                </li>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .bs-example{
+        margin-top: 5px;
+    }
+    .navbar-color
+    {
+          background-color: gold !important;
+    }
+    .navbar-font
+    {
+      font-size: 15px;
+    }
+  </style>
+</head>
+<div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-color">
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav navbar-font">
+        <a href="/" class="nav-item nav-link active">Home</a>
+        <a href="#" class="nav-item nav-link">Profile</a>
+        <a href="#" class="nav-item nav-link">Messages</a>
+        <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+        <ul id="cart_nav">
+          <li>
+            <%  cart = Cart.where(is_done: false).first %>
+            <a class="cart_li gg" href="/cart">
+              <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
               <% end %>
-            <% end %>    
-            <!-- <li>
-              <a href="/product_page.html" class="prev_cart">
-                <div class="cart_vert">
-                  <img src="<%#= asset_path('produkt_slid1.png') %>" alt="" title="">
+            </a>
+            <ul class="cart_cont">
+              <li class="no_border">
+                <p>Recently added cart item(s)</p>
+              </li>
+              <% if current_user.present? %>
+                <% if current_cart.cart_items.any? %>
+                  <% current_cart.cart_items.each do |cart_item| %>
+                    <li>
+                      <!-- <a href="/product_page.html" class="prev_cart">
+                        <div class="cart_vert"><img src="<%#= asset_path('cart_img.png') %>" alt="" title=""></div>
+                      </a> -->
+
+                      <a href="/product/<%= cart_item.product.id %>" class="prev_cart"><div class="cart_vert"><%= image_tag cart_item.product.image.url(:thumb) %></div>
+                      </a>
+                      <div class="cont_cart">
+                        <h4><%= cart_item.product.name %></h4>
+                        <div class="price">₹<%= cart_item.product.display_price %></div>
+                      </div>
+                      <a title="close" class="close" href="#"></a>
+                      <div class="clear"></div>
+                    </li>
+                  <% end %>
+                <% end %>
+              <% end %>      
+              <!-- <li>
+                <a href="/product_page.html" class="prev_cart">
+                  <div class="cart_vert">
+                    <img src="<%#= asset_path('produkt_slid1.png') %>" alt="" title="">
+                  </div>
+                </a>
+                <div class="cont_cart">
+                  <h4>Caldrea Linen and Room Spray</h4>
+                  <div class="price">1 x $399.00</div>
                 </div>
-              </a>
-              <div class="cont_cart">
-                <h4>Caldrea Linen and Room Spray</h4>
-                <div class="price">1 x $399.00</div>
-              </div>
-              <a title="close" class="close" href="#"></a>
-              <div class="clear"></div>
-            </li> -->
-            <li class="no_border">
-              <a href="/cart" class="view_cart">View shopping cart</a>
-              <a href="/cart" class="checkout">Procced to Checkout</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul id="cart_nav">
-        <li>
-          <%  cart = Cart.where(is_done: false).first %>
-          <a class="cart_li" href="/cart">
+                <a title="close" class="close" href="#"></a>
+                <div class="clear"></div>
+              </li> -->
+              <li class="no_border">
+                <a href="/cart" class="view_cart">View shopping cart</a>
+                <a href="/cart" class="checkout">Procced to Checkout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul id="cart_nav">
+          <li>
+            <%  cart = Cart.where(is_done: false).first %>
+          <a class="cart_li gg info1" href="/cart">
             <% if current_user.present? %>
               <%= current_user.wishlists.count rescue nil%>
             <% end %>
@@ -118,9 +99,10 @@
             <li class="no_border">
               <p>Recently added wishlist item(s)</p>
             </li>
-            <% product_ids = current_user.wishlists.map(&:product_id) %>
-            <% @products = Product.where(id: product_ids)%>
-            <%# if current_cart.cart_items.any? %>
+            <% if current_user.present? %>
+              <% product_ids = current_user.wishlists.map(&:product_id) %>
+              <% @products = Product.where(id: product_ids)%>
+              <%# if current_cart.cart_items.any? %>
               <% @products.each do |product| %>
                 <li>
                   <!-- <a href="/product_page.html" class="prev_cart">
@@ -137,6 +119,7 @@
                   <div class="clear"></div>
                 </li>
               <% end %>
+            <% end %>  
             <%# end %>    
             <!-- <li>
               <a href="/product_page.html" class="prev_cart">
@@ -156,45 +139,38 @@
               <a href="/wishlist" class="checkout">Procced to Checkout</a>
             </li>
           </ul>
-        </li>
-      </ul>
-
-
-      <nav class="private">
-        <ul>
-          <li><a href="#">My Account</a></li>
-          <li class="separator">|</li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa fa-heart"></i><span class="sr-only">(current)</span><span class="badge"><%#= current_user.wishlists.count rescue nil%></a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a class="nav-link waves-effect waves-light" href="/cart">
-              <i class="glyphicon glyphicon-shopping-cart"></i>
-              <%#  cart = Cart.where(is_done: false).first %>
-                <%# if current_user.present? %><%#=  current_cart.cart_items.count rescue nil %>
-                <%# end %>
-            </a>
-          </li> -->
-          <li class="separator">|</li>
-          <% if current_user.present? %>
-            <li><a href="/users/sign_out">Sign Out</a></li>
-          <% else %>  
-            <li><a href="/users/sign_in">Log In</a></li>
-          <% end %> 
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-nav ml-auto pull-right">
+        <% if current_user.present? %>
+          <li><a href="/users/sign_out">Sign Out</a></li>
+        <% else %>  
+          <li><a href="/users/sign_in">Log In</a></li>
           <li class="separator">|</li>
           <li><a href="/users/sign_up">Sign Up</a></li>
-        </ul>
-      </nav>
-      <!-- .private -->
+        <% end %> 
+      </div>
     </div>
-    <!-- .grid_6 -->
-  </header>
-  <!-- #branding -->
+  </nav>
 </div>
-<!-- .container_12 -->
-<div class="col-md-12">
-          
-</div>
+<style type="text/css">
+  .gg
+  {
+    margin: 0px !important;
+  }
+</style>
+
+
+<!-- <div class="container_12">
+  <div class="clear"></div>
+    <header id="branding">
+      <div class="grid_6">
+      </div>
+    </header>
+  </div>
+  <div class="col-md-12">
+</div> -->
 <div class="clear"></div>
 <div id="block_nav_primary">
   <div class="container_12">
@@ -215,8 +191,8 @@
               </li>
             <% end %>
           </li>    
-          <li class="curent"><a href="/">Home</a></li>
-          <li class="parent">
+          <!-- <li class="curent"><a href="/">Home</a></li> -->
+          <!-- <li class="parent">
             <a href="#">Spray</a>
             <ul class="sub">
               <li><a href="/home/catalog_grid">For home</a></li>
@@ -242,8 +218,8 @@
               <li><a href="/blog.html">Blog posts</a></li>
               <li><a href="/blog_post.html">Blog post view</a></li>
             </ul>
-          </li>
-          <li><a href="/home/catalog_grid">All Products</a></li>
+          </li> -->
+          <li class="curent" ><a href="/home/catalog_grid">All Products</a></li>
           <%if current_user.present?  %>
             
           <% else %>
@@ -357,6 +333,12 @@ a {
 .grid_color
 {
   background: #d4dce5 !important;
+}
+.info1
+{
+
+  background: url(/images/bg_like.png) no-repeat 10px 50% #f1f3f5 !important;
+  
 }
 /*.ib{background-color: cadetblue !important;}*/
 </style>

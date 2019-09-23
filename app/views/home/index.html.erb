@@ -1,53 +1,33 @@
-<!-- .block_nav_primary -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ --><!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-
 <% if flash[:alert] %>
   <div class="alert" id ="alert"><%= flash[:alert] %></div>
 <% end %>
 <div class="clear"></div>
 <div class="container_12">
   <div class="grid_12">
-    <div class="slidprev"><span>Prev</span></div>
-    <div class="slidnext"><span>Next</span></div>
-    <div id="slider">
-      <div class="slide">
-        <img src="<%= asset_path('content/slide1.jpg') %>" alt="" title="">
-        <div class="slid_text">
-          <h3 class="slid_title"><span>Breeze Theme</span></h3>
-          <p><span>Breeze is the 14 stylish HTML templates,</span></p>
-          <p><span>which will helps you boost sales</span></p>
-          <p><span>and receive good feedback from your clients.</span></p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="<%= asset_path('content/slide2.jpg') %>" alt="" title="">
-        <div class="slid_text">
-          <h3 class="slid_title"><span>Flexibility</span></h3>
-          <p><span>Every product, which you are selling,</span></p>
-          <p><span>will look great with Breeze theme.</span></p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="<%= asset_path('content/slide3.jpg') %>" alt="" title="">
-        <div class="slid_text">
-          <h3 class="slid_title"><span>Accuracy and Easiness</span></h3>
-          <p><span>Breeze design is mere and accurate,</span></p>
-          <p><span>so it will satisfy everybody.</span></p>
-        </div>
-      </div>
-    </div>
-    <!-- .slider -->
-    <div class="clear"></div>
-    <div id="myController">
-      <div class="control"><span>1</span></div>
-      <div class="control"><span>2</span></div>
-      <div class="control"><span>3</span></div>
+    <div class="container">
+      <section class="customer-logos slider">
+        <% @slider_products.each do |product| %>
+          <div class="slide">
+            <a href="/products/<%= product.id %>">
+              <% if product.image.present? %>
+                <img src="<%= product.image %>"/>
+              <% else %>
+                <img src="<%= asset_path('sku.jpg') %>"/>
+              <% end %>
+            </a>
+          </div>
+        <% end %>  
+      </section>
     </div>
   </div>
-  <!-- .grid_12 -->
-</div>
+</div>    
 <!-- .container_12 -->
 <div class="clear"></div>
 <section id="main" class="home">
@@ -383,3 +363,153 @@
     border-right: 1px solid #e0e0e0;
 }
 </style>
+<style type="text/css">
+  h2{
+  text-align:center;
+  padding: 20px;
+}
+/* Slider */
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.grid_12
+{
+  background-color: dimgrey;
+}
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.customer-logos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+});
+</script>

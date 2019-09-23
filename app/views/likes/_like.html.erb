@@ -1,25 +1,27 @@
 <div id= "like_<%= product.class.name %>_<%= product.id %>"> 
   <!--Like-->
-	(<%=count_like(product)%>)
-	<% if current_user.is_liked(product) %>
-		<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
-			<i class= "fa fa-thumbs-up" style="font-size:15px;color:#dc6060;"></i>
-		<% end %>
-	<%else%>
-		<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
-			<i class= "fa fa-thumbs-up" style="font-size:15px;"></i>
-		<% end %>
-	<%end%>
-	<!--dislike-->
-	
-	(<%=count_dislike(product)%>)
-	<% if current_user.is_disliked(product) %>
-		<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
-			<i class= "fa fa-thumbs-down" style="font-size:15px;color:#dc6060;"></i>
-		<% end %>
-	<%else%>
-		<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true  do %>
-			<i class= "fa fa-thumbs-down" style="font-size:15px;"></i>
-		<% end %>
-	<%end%>
+  <% if current_user.present? %>	
+		(<%=count_like(product)%>)
+		<% if current_user.is_liked(product) %>
+			<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+				<i class= "fa fa-thumbs-up" style="font-size:15px;color:#dc6060;"></i>
+			<% end %>
+		<%else%>
+			<%= link_to like_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+				<i class= "fa fa-thumbs-up" style="font-size:15px;"></i>
+			<% end %>
+		<%end%>
+		<!--dislike-->
+		
+		(<%=count_dislike(product)%>)
+		<% if current_user.is_disliked(product) %>
+			<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true do %>
+				<i class= "fa fa-thumbs-down" style="font-size:15px;color:#dc6060;"></i>
+			<% end %>
+		<%else%>
+			<%= link_to dislike_create_path(id: product.id, type: product.class.name), method: :post, remote: true  do %>
+				<i class= "fa fa-thumbs-down" style="font-size:15px;"></i>
+			<% end %>
+		<%end%>
+	<% end %>		
 </div>

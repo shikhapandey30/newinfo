@@ -17,14 +17,14 @@
               </a>
             </div>
           </div>
-          <!-- .prev -->
           <ul class="pagination clearfix" id="thumblist">
-            <li><a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid.png',largeimage: './images/produkt_slid.png'}"><img src="<%= asset_path('produkt_slid.png') %>" alt="" title=""/></a>
+            <li><a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid.png',largeimage: './images/produkt_slid.png'}"><!-- <img src="<%#= asset_path('produkt_slid.png') %>" alt="" title=""/> -->
+            <img src="<%= @product.image %>" title="" alt=""/></a>
             </li>
-            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid1.png',largeimage: './images/produkt_slid1.png'}"><img src="<%= asset_path('produkt_slid1.png') %>" alt="" title=""/></a></li>
-            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid2.png',largeimage: './images/produkt_slid2.png'}"><img src="<%= asset_path('produkt_slid2.png') %>" alt="" title=""/></a></li>
-            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid3.png',largeimage: './images/produkt_slid3.png'}"><img src="<%= asset_path('produkt_slid3.png') %>" alt="" title=""/></a></li>
-            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid4.png',largeimage: './images/produkt_slid4.png'}"><img src="<%= asset_path('produkt_slid4.png') %>" alt="" title=""/></a></li>
+            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid1.png',largeimage: './images/produkt_slid1.png'}"><!-- <img src="<%#= asset_path('produkt_slid1.png') %>" alt="" title=""/> --><img src="<%= @product.image %>" title="" alt=""/></a></li>
+            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid2.png',largeimage: './images/produkt_slid2.png'}"><!-- <img src="<%#= asset_path('produkt_slid2.png') %>" alt="" title=""/> --><img src="<%= @product.image %>" title="" alt=""/></a></li>
+            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid3.png',largeimage: './images/produkt_slid3.png'}"><!-- <img src="<%#= asset_path('produkt_slid3.png') %>" alt="" title=""/> --><img src="<%= @product.image %>" title="" alt=""/></a></li>
+            <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/produkt_slid4.png',largeimage: './images/produkt_slid4.png'}"><!-- <img src="<%#= asset_path('produkt_slid4.png') %>" alt="" title=""/> --><img src="<%= @product.image %>" title="" alt=""/></a></li>
           </ul>
           <div class="next_prev">
             <a id="img_prev" class="arows" href="#"><span>Prev</span></a>
@@ -44,90 +44,77 @@
               <span>1 REVIEW(S)</span>
               <!-- <a class="add_review" href="#">ADD YOUR REVIEW</a> -->
               <a href="/products/<%= @product.id %>/bookings/new" class="add_review">Add to Cart</a>
-
-              
-
-            </div>
+            </div><hr/>
+            <div>
+              <span>Share With</span>
+              <%= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
+            </div><hr/>
             <div class="price">
               <span class="display_price">₹<%= @product.display_price %></span>&nbsp;&nbsp;
+              <% if @product.full_price.to_f > 0 %>
+              <span class="fix_price"><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
+              <% end %>
+              (<% if @product.discount_percentage %>
+              <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
+              </span>
+              <% end %>)
+              &nbsp;&nbsp;
+              <input type="button" value="Info" onClick="showHideDiv('divMsg')" class="button" style="width: 40px;" /><br><br>
+              <div id="divMsg" style="background-color: #006969; color: #ffffff; height: 200px; width: 200px; text-align: center; display:none" class="fa fa-info-circle">
+                <b>
+                <%= @product.name.titleize %>
+                <br/><br/>
+                Price: <span>₹<%= @product.display_price %></span>
+                <br/><br/>
+                Full Price: 
                 <% if @product.full_price.to_f > 0 %>
-                  <span class="fix_price"><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
-                <% end %>
+                <span><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
+                <% end %> 
+                <br/><br/>
+                Discount: 
                 (<% if @product.discount_percentage %>
-                  <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
-                  </span>
-                <% end %>)
-                &nbsp;&nbsp;
-                  <input type="button" value="Info" onClick="showHideDiv('divMsg')" class="button" style="width: 40px;" /><br><br>
-                  <div id="divMsg" style="background-color: #006969; color: #ffffff; height: 200px; width: 200px; text-align: center; display:none" class="fa fa-info-circle">
-                    <b>
-                      <%= @product.name.titleize %>
-                      <br/><br/>
-                      Price: <span>₹<%= @product.display_price %></span>
-                      <br/><br/>
-                      Full Price: 
-                      <% if @product.full_price.to_f > 0 %>
-                        <span><del> ₹<%= @product.display_full_price %></del></span>&nbsp;&nbsp;
-                      <% end %> 
-                      <br/><br/>
-                      Discount: 
-                      (<% if @product.discount_percentage %>
-                        <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
-                        </span>
-                      <% end %>)   
-                    </b>
-                  </div>
-                
-              
-            </div>
-            <p><%= @product.description %></p>
+                <span class="discount discount_percentage"><%= @product.discount_percentage.to_i %>%  off
+                </span>
+                <% end %>)   
+                </b>
+              </div>
+            </div><hr/>
+            <p><%= raw @product.description %></p>
             <div class="ava_price">
               <div class="availability_sku">
                 <div class="availability">
                   Availability: <span>In stock</span>
                 </div>
+                <br/>
                 <div class="sku">
                   SKU: <span>Candles OV</span>
                 </div>
               </div>
-              <!-- .availability_sku -->
-              
-              <!-- .price -->
             </div>
-            <!-- .ava_price -->
+            <br/><br/>
             <div class="block_cart">
               <div class="obn_like">
-                <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
                 <div class="like">
-
-                <%#= link_to products_add_wishlist_path, class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
-                  <!-- Add to Wishlist -->
-                <%# end %>
-                <button class="add-to-shopping-bag btn btn-primary" type="button"><a href="/products/<%= @product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></button>
-
-                
-                <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
+                  <%= link_to product_add_wishlist_path(@product), class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
+                  Add to Wishlist
+                  <% end %>
+                  <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
                 </div>
-                  <div class="obn"><a href="#" class="obn">Add to Compare</a></div>
-                  <div class="like">
-                    <%= link_to product_add_wishlist_path(@product), class: "btn btn-default1 box_size", data: {method: :post, remote: true} do %>
-                      Add to Wishlist
-                    <% end %>
-                    <%#= link_to 'Book Now', bookings_new_product_path(@product), class: "bg_green tc_white tc_green_h bg_white_h decoration_btn" %>
-                  </div>
-                <%= render partial: "likes/like", locals: {product: @product } %><hr>
+                <br/><br/>
+                <%= render partial: "likes/like", locals: {product: @product } %>
+                <hr>
               </div>
               <!-- <div class="cart">
                 <a href="/products/<%= @product.id %>/bookings/new" class="bay">Add to Cart</a>
                 <input type="text" name="" class="number" value="1" />
                 <span>Quantity:</span>
-              </div> -->
+                </div> -->
               <div class="clear"></div>
             </div>
             <!-- .block_cart -->
             <div class="pull-right">
-              <span>Share With</span>
-              <%= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
+              <!-- <span>Share With</span> -->
+              <%#= social_share_button_tag(:allow_sites => %w(twitter facebook)) %>
             </div>
           </div>
           <!-- .entry_content -->
@@ -213,17 +200,15 @@
                   </div>
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <h3><%= f.label "Revieweeeeeeee" %></h3>
-                      <%= f.text_area :review, :class => 'ckeditor' %>
-                       <h3><%= f.label "Review" %></h3>
-                      <%= f.text_area :review, class:"form-control client_member_body", rows:"12", :required => true, value: @rating_review.review  %>
+                      <h3><%= f.label "Review" %></h3>
+                      <%= f.text_area :review, :class => 'ckeditor', :required => true, value: @rating_review.review %>
                       <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
                     <script type="text/javascript">
                       $('.ckeditor').ckeditor({
-  // optional config
-});
-
+                      // optional config
+                      });
+                      
                     </script>
                   </div>
                 </div>
@@ -253,11 +238,8 @@
                   </div>
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <h3><%= f.label "Revieweeeeeeee" %></h3>
-                      <%= f.text_area :review, :class => 'ckeditor' %>
                       <h3><%= f.label "Review" %></h3>
-                      <%#= f.text_area :review, class:"form-control client_member_body", rows:"12", :required => true, value: @rating_review.review  %>
-                      <%= f.text_area :review, rows: "20", class: "client_member_body form-control rounded", placeholder: ""%>
+                      <%= f.text_area :review, :class => 'ckeditor', value: @rating_review.review %>
                       <%= f.file_field :image, class: "form-control", rows:"12", value: @rating_review.image %><br/>
                     </div>
                   </div>
@@ -299,16 +281,14 @@
                     <div class="preview slides_container">
                       <div class="prev_bg">
                         <!-- <a class="jqzoom zoomWrapperImage" rel="gal1" href="<%= rating_review.image %>" style="width: 50%; height: 100px;"> -->
-                          <% if rating_review.image.present?  %>
-                            
-                              <img src="<%= rating_review.image %>" style="width: 60px; height: 60px;" title="" alt=""/>
-                            
-                          <% else %>  
-                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                          <% end %>
+                        <% if rating_review.image.present?  %>
+                        <img src="<%= rating_review.image %>" style="width: 60px; height: 60px;" title="" alt=""/>
+                        <% else %>  
+                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                        <% end %>
                         <!-- </a>   -->
-                       </div>
-                      </div>  
+                      </div>
+                    </div>
                     <div class="review-block-name"><a href="#"><%= rating_review.user.email %></a></div>
                     <div class="review-block-date"><%= rating_review.created_at.strftime('%d %b %Y')%><br/><%= time_ago_in_words(rating_review.created_at, include_seconds: true) %> Ago</div>
                   </div>
@@ -321,7 +301,7 @@
                       <span class="glyphicon glyphicon-star half"></span>
                       <% end %>
                     </div>
-                    <div class="review-block-description"><%= rating_review.review%></div>
+                    <div class="review-block-description"><%= raw rating_review.review%></div>
                   </div>
                 </div>
                 <hr/>
@@ -468,15 +448,15 @@
         <nav class="left_menu">
           <ul>
             <% Category.all.each do |category|%>
-              <li class="<%= is_active_controller('products') %>">
-                <a href=""></i> <span class="nav-label"><%= category.name %></span> <span class="fa arrow">
-                  <% category.sub_categories.each do |sub_category|%>
-                    <% sub_category.sub_category_types.each do |sub_category_type|%>
-                      (<%= sub_category_type.products.count %>)
-                    <% end %>
-                  <% end %>
-                </span></a>  
-              </li>
+            <li class="<%= is_active_controller('products') %>">
+              <a href=""></i> <span class="nav-label"><%= category.name %></span> <span class="fa arrow">
+              <% category.sub_categories.each do |sub_category|%>
+              <% sub_category.sub_category_types.each do |sub_category_type|%>
+              (<%= sub_category_type.products.count %>)
+              <% end %>
+              <% end %>
+              </span></a>  
+            </li>
             <% end %>
           </ul>
         </nav>
@@ -619,33 +599,33 @@
   }
   .zoomWrapperImagyse
   {
-    height: 50px !important;
-    width: 50px !important;
+  height: 50px !important;
+  width: 50px !important;
   }
-<script type="text/javascript">
-  setTimeout(function(){
-    $(document).ready(function(){
-      CKEDITOR.replaceClass = 'client_member_body';
-    });
-  },500);
+  <script type="text/javascript">
+    setTimeout(function(){
+      $(document).ready(function(){
+        CKEDITOR.replaceClass = 'client_member_body';
+      });
+    },500);
   </script>
   .display_price
   {
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
   }
   .discount_percentage
   {
-    font-size: 16px;
-    font-weight: 500;
-    color: #388e3c;
-    vertical-align: middle;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: 500;
+  color: #388e3c;
+  vertical-align: middle;
+  font-weight: bold;
   }
   .fix_price
   {
-    color: grey;
+  color: grey;
   }
   .button {border-radius: 50%;}
 </style>
