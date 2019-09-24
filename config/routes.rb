@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :bookings
+  # devise_for :users, :controllers => {:registrations => "users/registrations"}
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :products do
@@ -22,7 +23,11 @@ Rails.application.routes.draw do
   post 'order' => "orders#all_order_show"
   get 'orders_history' => "orders#index"
   
-  devise_for :users
+  # devise_for :users
+  # devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
+
 	root 'home#index'
 	get "home/catalog_grid", :to => 'home#catalog_grid'
 	get "home/text_page", :to => 'home#text_page'

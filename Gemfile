@@ -95,3 +95,5 @@ gem 'font-awesome-rails'
 gem 'ckeditor', '4.2.4'
 gem 'paperclip'
 gem 'stripe'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+gem "recaptcha", require: "recaptcha/rails"
